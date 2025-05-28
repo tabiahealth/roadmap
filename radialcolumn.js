@@ -1,5 +1,5 @@
 // Function to create a radial column chart
-function createRadialColumnChart(data, containerId, firstProp = "usClients", secondProp = "worldClients", firstLabel = "USA", secondLabel = "World") {
+function createRadialColumnChart(data, containerId, firstProp, secondProp, firstLabel, secondLabel) {
     // Configure dimensions
     const width = 1260;
     const height = 1260;

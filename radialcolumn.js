@@ -19,7 +19,7 @@ function createRadialColumnChart(data, containerId, firstProp, secondProp, first
 
     // Extract categories and create x scale
     const categories = data.map(d => d.category);
-    const x = d3.scaleBand()
+    const xScale = d3.scaleBand()
         .domain(categories)
         .range([0, Math.PI])
         .padding(0.1);
@@ -46,14 +46,14 @@ function createRadialColumnChart(data, containerId, firstProp, secondProp, first
         .attr("text-anchor", "middle")
         .attr("transform", function(d) {
             // Position at the center of the category
-            const angle = x(d) + x.bandwidth() / 2 - Math.PI/2;
+            const angle = xScale(d) + xScale.bandwidth() / 2 - Math.PI/2;
             // Position closer to the outer radius (reduced from 20 to 5)
             return `rotate(${angle * 180 / Math.PI}) translate(0,${-outerRadius - 5})`;
         })
         .append("text")
         .text(d => d)
         .attr("transform", function(d) {
-            const angle = x(d) + x.bandwidth() / 2 - Math.PI/2;
+            const angle = xScale(d) + xScale.bandwidth() / 2 - Math.PI/2;
             // Rotate the text to make it readable
             let rotation = 0;
             if (angle > 0 && angle < Math.PI) {
@@ -102,7 +102,7 @@ function createRadialColumnChart(data, containerId, firstProp, secondProp, first
 
     // Function to create bars
     function createBars(data, key, offset, color, label) {
-        const barWidth = x.bandwidth() / 2 * 0.9; // Bar width (half of the available space)
+        const barWidth = xScale.bandwidth() / 2 * 0.9; // Bar width (half of the available space)
 
         svg.append("g")
             .selectAll("path")
@@ -111,7 +111,7 @@ function createRadialColumnChart(data, containerId, firstProp, secondProp, first
             .append("path")
             .attr("fill", color)
             .attr("d", d => {
-                const startAngle = x(d.category) + offset;
+                const startAngle = xScale(d.category) + offset;
                 const endAngle = startAngle + barWidth;
 
                 const arc = d3.arc()
@@ -150,13 +150,46 @@ function createRadialColumnChart(data, containerId, firstProp, secondProp, first
                     .duration(500)
                     .style("opacity", 0);
             });
+
+        // Add count values below each column
+        svg.append("g")
+            .selectAll(".count-label")
+            .data(data)
+            .enter()
+            .append("text")
+            .attr("class", "count-label")
+            .attr("transform", d => {
+                const startAngle = xScale(d.category) + offset;
+                const endAngle = startAngle + barWidth;
+                // Apply an additional 90-degree offset to align with the columns
+                // Columns start from the left side with -Math.PI/2 offset
+                // Count values need an additional -Math.PI/2 to also start from the left
+                const midAngle = (startAngle + endAngle) / 2 - Math.PI;
+
+                // Calculate position in Cartesian coordinates
+                const radius = innerRadius + 30; // Position inside the inner circle
+                const xPos = radius * Math.cos(midAngle);
+                const yPos = radius * Math.sin(midAngle);
+
+                return `translate(${xPos},${yPos})`;
+            })
+            .attr("text-anchor", "middle")
+            .attr("dy", "0.35em")
+            .text(d => {
+                // Display the count value
+                return (d[key] && Array.isArray(d[key])) ? d[key].length : 0;
+            })
+            .style("fill", color)
+            .style("font-size", "14px")
+            .style("font-weight", "bold")
+            .style("text-shadow", "0px 0px 3px white"); // Add text shadow for better visibility
     }
 
     // Create bars for the first property
     createBars(data, firstProp, 0, color(firstProp), firstLabel);
 
     // Create bars for the second property
-    createBars(data, secondProp, x.bandwidth() / 2, color(secondProp), secondLabel);
+    createBars(data, secondProp, xScale.bandwidth() / 2, color(secondProp), secondLabel);
 
     // Add legend
     const legend = svg.append("g")

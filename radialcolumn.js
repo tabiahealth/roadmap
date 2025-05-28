@@ -179,10 +179,11 @@ function createRadialColumnChart(data, containerId, firstProp = "usClients", sec
         .attr("height", 20)
         .attr("fill", d => color(d.key));
 
-    legend.selectAll("text")
+    legend.selectAll(".legend-text")
         .data(legendData)
         .enter()
         .append("text")
+        .attr("class", "legend-text")
         .attr("x", 30)
         .attr("y", (d, i) => i * 25 + 15)
         .text(d => d.label)

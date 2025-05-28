@@ -167,7 +167,10 @@ function createRadialColumnChart(data, containerId, firstProp, secondProp, first
                 const midAngle = (startAngle + endAngle) / 2 - Math.PI;
 
                 // Calculate position in Cartesian coordinates
-                const radius = innerRadius + 30; // Position inside the inner circle
+                // Calculate the outer radius for this specific column
+                const columnOuterRadius = d[key].length === 0 ? innerRadius + 5 : y(d[key].length);
+                // Position below the column (outside the outer radius with a small offset)
+                const radius = columnOuterRadius + 20;
                 const xPos = radius * Math.cos(midAngle);
                 const yPos = radius * Math.sin(midAngle);
 

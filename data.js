@@ -236,7 +236,7 @@ const tabiaTimelineData = [
         description: "deployed first at RVA"
     },
     {
-        date: new Date(2025, 4, 1), // May 1, 2025
+        date: new Date(2025, 3, 28), // Apr 28, 2025
         milestone: "No-show prevention (auto)",
         description: "deployed first at RVA"
     },

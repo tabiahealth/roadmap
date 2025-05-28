@@ -116,7 +116,7 @@ function createRadialColumnChart(data, containerId, firstProp, secondProp, first
 
                 const arc = d3.arc()
                     .innerRadius(innerRadius)
-                    .outerRadius(y(d[key].length)) // Use the array length to determine the bar height
+                    .outerRadius(d[key].length === 0 ? innerRadius + 5 : y(d[key].length)) // Use minimum height for zero values
                     .startAngle(startAngle - Math.PI/2)
                     .endAngle(endAngle - Math.PI/2);
 
@@ -130,10 +130,16 @@ function createRadialColumnChart(data, containerId, firstProp, secondProp, first
                     .duration(200)
                     .style("opacity", 0.9);
 
-                // Create an HTML list with the item names
-                const itemList = d[key].map(item => `<li>${item}</li>`).join('');
+                // Create an HTML list with the item names or show a message for zero values
+                let tooltipContent;
+                if (d[key].length === 0) {
+                    tooltipContent = `<strong>${d.category}</strong><br>${label}: <em>No clients</em>`;
+                } else {
+                    const itemList = d[key].map(item => `<li>${item}</li>`).join('');
+                    tooltipContent = `<strong>${d.category}</strong><br>${label}:<ul style="margin: 5px 0; padding-left: 20px;">${itemList}</ul>`;
+                }
 
-                tooltip.html(`<strong>${d.category}</strong><br>${label}:<ul style="margin: 5px 0; padding-left: 20px;">${itemList}</ul>`)
+                tooltip.html(tooltipContent)
                     .style("left", (event.pageX + 10) + "px")
                     .style("top", (event.pageY - 28) + "px");
             })

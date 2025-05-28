@@ -261,6 +261,74 @@ const tabiaTimelineData = [
     },
 ];
 
+// Data for the deliverable functionalities table
+const tabiaFunctionalitiesData = [
+    {
+        deliverable: "Acquisition",
+        functionalities: [
+            { name: "Messenger" },
+            { name: "Subcategory A2" },
+            { 
+                name: "Subcategory A3",
+                subItems: [
+                    "Item A3-1",
+                    "Item A3-2"
+                ]
+            }
+        ]
+    },
+    {
+        deliverable: "Scheduling",
+        functionalities: [
+            { name: "Messenger" },
+            { name: "Integrations with EHRs" }
+        ]
+    },
+    {
+        deliverable: "No-show prevention",
+        functionalities: [
+            { name: "Productize confirmation" },
+            { name: "Subcategory C2" }
+        ]
+    },
+    {
+        deliverable: "No-show recovery",
+        functionalities: [
+            { name: "Subcategory C1" },
+            { name: "Subcategory C2" }
+        ]
+    },
+    {
+        deliverable: "Patient recovery",
+        functionalities: [
+            { name: "Subcategory C1" },
+            { name: "Subcategory C2" }
+        ]
+    },
+    {
+        deliverable: "Care pathway orchestration",
+        functionalities: [
+            { name: "Better represent procedures" },
+            { name: "More pathway capabilities" }
+        ]
+    },
+    {
+        deliverable: "RPM",
+        functionalities: [
+            { name: "Subcategory C1" },
+            { name: "Subcategory C2" }
+        ]
+    },
+    {
+        deliverable: "Platform / Enablers",
+        functionalities: [
+            { name: "EHR data sync" },
+            { name: "Integrations" },
+            { name: "Optimizations" }
+        ]
+    }
+];
+
 // Data for the radial column charts
 const tabiaClientData = getClientData();
 const tabiaSolutionsData = getSolutionsData();

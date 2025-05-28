@@ -35,44 +35,7 @@ function createRadialColumnChart(data, containerId, firstProp = "usClients", sec
         .domain([firstProp, secondProp])
         .range(["#4e79a7", "#f28e2c"]);
 
-    // Adicionar eixo x (categorias) - um label para cada coluna
-    // Primeiro, criar um array com todas as colunas (primeira e segunda propriedade para cada categoria)
-    const columnData = [];
-    categories.forEach(category => {
-        columnData.push({ category: category, type: firstProp, label: firstLabel });
-        columnData.push({ category: category, type: secondProp, label: secondLabel });
-    });
-
-    // Adicionar labels para as colunas
-    svg.append("g")
-        .selectAll("g")
-        .data(columnData)
-        .enter()
-        .append("g")
-        .attr("text-anchor", "middle") // Centralizar o texto
-        .attr("transform", function(d) {
-            // Calcular o ângulo baseado na posição da coluna
-            const offset = d.type === firstProp ? 0 : x.bandwidth() / 2;
-            const barWidth = x.bandwidth() / 2 * 0.9;
-            const angle = x(d.category) + offset + barWidth / 2 - Math.PI/2;
-            // Posicionar exatamente no innerRadius para ficar na base das colunas
-            return `rotate(${angle * 180 / Math.PI}) translate(${innerRadius},0)`;
-        })
-        .append("text")
-        .text(d => d.label) // Mostrar o label (primeiro ou segundo)
-        .attr("transform", function(d) {
-            // Calcular o ângulo baseado na posição da coluna
-            const offset = d.type === firstProp ? 0 : x.bandwidth() / 2;
-            const barWidth = x.bandwidth() / 2 * 0.9;
-            const angle = x(d.category) + offset + barWidth / 2 - Math.PI/2;
-            // Ajustar a rotação para alinhar com a direção da coluna
-            return angle > 0 && angle < Math.PI ? "rotate(0)" : "rotate(180)";
-        })
-        .style("font-size", "14px") // Aumentar o tamanho da fonte
-        .style("font-weight", "bold")
-        .style("fill", d => d.type === firstProp ? color(firstProp) : color(secondProp)) // Colorir o texto de acordo com a coluna
-        .attr("alignment-baseline", "middle")
-        .attr("dy", "0.35em"); // Ajuste fino para centralização vertical
+    // Os labels para as colunas foram removidos pois já existe uma legenda no gráfico
 
     // Adicionar labels para as categorias no círculo externo
     svg.append("g")

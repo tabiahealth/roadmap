@@ -165,7 +165,7 @@ function createRadialColumnChart(data, containerId, firstProp, secondProp, first
     legend.append("text")
         .attr("x", 0)
         .attr("y", 60)
-        .text("* The height of the bars represents the number of items")
+        .text("* The height of the bars represents the number of clients")
         .style("font-size", "12px")
         .style("font-style", "italic");
 

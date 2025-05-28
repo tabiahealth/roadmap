@@ -8,14 +8,14 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Tabia Roadmap for 2025</h1>
-    <div id="chart1"></div>
-
-    <h1>Client Distribution by Category</h1>
+    <h1>Client Distribution</h1>
     <div id="chart3"></div>
 
-    <h1>Automated and Semi-automated Solutions by Category</h1>
+    <h1>Automated and Semi-automated deployments</h1>
     <div id="chart4"></div>
+
+    <h1>Tabia Roadmap for 2025</h1>
+    <div id="chart1"></div>
 
     <!-- Load data -->
     <script src="data.js"></script>
@@ -30,7 +30,7 @@
         createRoadmapChart(tabiaRoadmapData, "chart1");
 
         // Create radial column chart with client data
-        createRadialColumnChart(tabiaClientData, "chart3", "usClients", "worldClients", "USA", "World");
+        createRadialColumnChart(tabiaClientData, "chart3", "usClients", "worldClients", "USA", "Rest of the world");
 
         // Create radial column chart with automated and semi-automated solutions data
         createRadialColumnChart(tabiaSolutionsData, "chart4", "automated", "semiAutomated", "Automated", "Semi-automated");

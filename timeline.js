@@ -26,7 +26,7 @@ function createTimelineChart(data, containerId) {
 
     // Define time scale
     const timeScale = d3.scaleTime()
-        .domain([new Date(2024, 0, 1), futureEndDate]) // Jan 1, 2024 to April 30, 2026
+        .domain([new Date(2022, 10, 1), futureEndDate])
         .range([0, innerWidth]);
 
     // Create x-axis

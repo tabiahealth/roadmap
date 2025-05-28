@@ -211,54 +211,54 @@ function getSolutionsData() {
 // Data for the product timeline
 const tabiaTimelineData = [
     {
-        date: new Date(2024, 0, 15), // January 15, 2024
-        milestone: "Product Conception",
-        description: "Initial concept and planning phase for the new product"
+        date: new Date(2023, 1, 1),
+        milestone: "Care pathway orchestration (semi)",
+        description: "deployed first in Brazil"
     },
     {
-        date: new Date(2024, 2, 10), // March 10, 2024
-        milestone: "Prototype Development",
-        description: "First working prototype completed"
+        date: new Date(2023, 7, 12),
+        milestone: "Acquisition (semi)",
+        description: "deployed first in Brazil"
     },
     {
-        date: new Date(2024, 5, 22), // June 22, 2024
-        milestone: "Alpha Release",
-        description: "Alpha version released for internal testing"
+        date: new Date(2023, 9, 31),
+        milestone: "Scheduling and no-show prevention (semi)",
+        description: "deployed first in Brazil"
     },
     {
-        date: new Date(2024, 8, 5), // September 5, 2024
-        milestone: "Beta Launch",
-        description: "Beta version launched for selected customers"
+        date: new Date(2024, 2, 12),
+        milestone: "Patient recovery (semi)",
+        description: "deployed first at RVA"
     },
     {
-        date: new Date(2024, 11, 12), // December 12, 2024
-        milestone: "Scheduling (semi-auto) deployed at HCC",
-        description: "Version 1.0 officially released to the market"
+        date: new Date(2024, 11, 12),
+        milestone: "No-show recovery (auto)",
+        description: "deployed first at RVA"
     },
     {
         date: new Date(2025, 4, 1), // May 1, 2025
-        milestone: "Confirmation (auto) deployed at RVA",
-        description: "Major feature update released (version 1.5)"
+        milestone: "No-show prevention (auto)",
+        description: "deployed first at RVA"
     },
     // Future milestones
     {
-        date: new Date(2025, 7, 15), // August 15, 2025
-        milestone: "Scheduling (auto) deployment in BR",
+        date: new Date(2025, 6, 15), // July 15, 2025
+        milestone: "Scheduling (auto)",
         description: "Launch in international markets",
         future: true
     },
     {
         date: new Date(2025, 11, 10), // December 10, 2025
-        milestone: "Version 2.0",
+        milestone: "Care pathway orchestration (auto) in BR",
         description: "Major version update with new features",
         future: true
     },
     {
-        date: new Date(2026, 2, 20), // March 20, 2026
-        milestone: "Mobile App Launch",
-        description: "Release of companion mobile application",
+        date: new Date(2026, 2, 15),
+        milestone: "RPM and similar",
+        description: "planned to US",
         future: true
-    }
+    },
 ];
 
 // Data for the radial column charts

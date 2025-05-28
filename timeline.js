@@ -108,22 +108,93 @@ function createTimelineChart(data, containerId) {
                 .style("opacity", 0);
         });
 
-    // Add milestone labels
-    milestones.append("text")
-        .attr("y", d => (data.indexOf(d) % 2 === 0) ? -20 : 30) // Alternate above and below
+    // Add milestone labels with text wrapping
+    const labelTexts = milestones.append("text")
+        .attr("y", d => (data.indexOf(d) % 2 === 0) ? -30 : 40) // Alternate above and below (increased spacing)
         .attr("text-anchor", "middle")
-        .attr("dy", ".35em")
-        .text(d => d.milestone)
         .style("font-size", "12px")
         .style("font-weight", "bold");
 
-    // Add milestone dates
-    milestones.append("text")
-        .attr("y", d => (data.indexOf(d) % 2 === 0) ? -40 : 50) // Alternate above and below
+    // Function to wrap text
+    labelTexts.each(function(d) {
+        const text = d3.select(this);
+        const words = d.milestone.split(/\s+/);
+        const lineHeight = 1.1; // ems
+        const maxWidth = 120; // Maximum width in pixels
+
+        let line = [];
+        let lineNumber = 0;
+        let tspan = text.append("tspan")
+            .attr("x", 0)
+            .attr("dy", 0);
+
+        let currentWidth = 0;
+
+        words.forEach(function(word, i) {
+            line.push(word);
+            tspan.text(line.join(" "));
+
+            if (tspan.node().getComputedTextLength() > maxWidth && line.length > 1) {
+                line.pop();
+                tspan.text(line.join(" "));
+                line = [word];
+                tspan = text.append("tspan")
+                    .attr("x", 0)
+                    .attr("dy", lineHeight + "em")
+                    .text(word);
+                lineNumber++;
+            }
+        });
+
+        // Adjust vertical position based on number of lines
+        if (lineNumber > 0) {
+            const initialY = parseFloat(text.attr("y"));
+            text.attr("y", initialY - (lineNumber * lineHeight * 7)); // Adjust starting position (increased spacing)
+        }
+    });
+
+    // Add milestone dates with text wrapping
+    const dateTexts = milestones.append("text")
+        .attr("y", d => (data.indexOf(d) % 2 === 0) ? -60 : 70) // Alternate above and below (increased spacing)
         .attr("text-anchor", "middle")
-        .attr("dy", ".35em")
-        .text(d => d.date.toLocaleDateString())
         .style("font-size", "10px");
+
+    // Function to wrap date text
+    dateTexts.each(function(d) {
+        const text = d3.select(this);
+        const dateStr = d.date.toLocaleDateString();
+        const words = dateStr.split(/\s+/);
+        const lineHeight = 1.1; // ems
+        const maxWidth = 100; // Maximum width in pixels for dates (slightly smaller)
+
+        let line = [];
+        let lineNumber = 0;
+        let tspan = text.append("tspan")
+            .attr("x", 0)
+            .attr("dy", 0);
+
+        words.forEach(function(word, i) {
+            line.push(word);
+            tspan.text(line.join(" "));
+
+            if (tspan.node().getComputedTextLength() > maxWidth && line.length > 1) {
+                line.pop();
+                tspan.text(line.join(" "));
+                line = [word];
+                tspan = text.append("tspan")
+                    .attr("x", 0)
+                    .attr("dy", lineHeight + "em")
+                    .text(word);
+                lineNumber++;
+            }
+        });
+
+        // Adjust vertical position based on number of lines
+        if (lineNumber > 0) {
+            const initialY = parseFloat(text.attr("y"));
+            text.attr("y", initialY - (lineNumber * lineHeight * 6)); // Adjust starting position (increased spacing)
+        }
+    });
 
     // Add title
     svg.append("text")

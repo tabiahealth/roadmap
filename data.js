@@ -192,6 +192,40 @@ function getSolutionsData() {
     });
 }
 
+// Data for the product timeline
+const tabiaTimelineData = [
+    {
+        date: new Date(2024, 0, 15), // January 15, 2024
+        milestone: "Product Conception",
+        description: "Initial concept and planning phase for the new product"
+    },
+    {
+        date: new Date(2024, 2, 10), // March 10, 2024
+        milestone: "Prototype Development",
+        description: "First working prototype completed"
+    },
+    {
+        date: new Date(2024, 5, 22), // June 22, 2024
+        milestone: "Alpha Release",
+        description: "Alpha version released for internal testing"
+    },
+    {
+        date: new Date(2024, 8, 5), // September 5, 2024
+        milestone: "Beta Launch",
+        description: "Beta version launched for selected customers"
+    },
+    {
+        date: new Date(2024, 11, 12), // December 12, 2024
+        milestone: "Official Release",
+        description: "Version 1.0 officially released to the market"
+    },
+    {
+        date: new Date(2025, 4, 1), // May 1, 2025
+        milestone: "Feature Update",
+        description: "Major feature update released (version 1.5)"
+    }
+];
+
 // Data for the radial column charts
 const tabiaClientData = getClientData();
 const tabiaSolutionsData = getSolutionsData();

@@ -14,6 +14,9 @@
     <h1>Maturity level of deliverables</h1>
     <div id="chart4"></div>
 
+    <h1>Product Timeline (2024-2025)</h1>
+    <div id="chart2"></div>
+
     <h1>Tabia Roadmap for 2025</h1>
     <div id="chart1"></div>
 
@@ -23,9 +26,13 @@
     <!-- Load chart functions -->
     <script src="roadmap.js"></script>
     <script src="radialcolumn.js"></script>
+    <script src="timeline.js"></script>
 
     <!-- Initialize charts -->
     <script>
+        // Create timeline chart with product timeline data
+        createTimelineChart(tabiaTimelineData, "chart2");
+
         // Create roadmap chart with Tabia roadmap data
         createRoadmapChart(tabiaRoadmapData, "chart1");
 

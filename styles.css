@@ -13,9 +13,16 @@ h1 {
     text-align: center;
     font-weight: bold;
 }
-#chart1, #chart2, #chart3 {
+#chart1, #chart3, #chart4 {
     width: 1260px;
     height: 1260px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+#chart2 {
+    width: 1260px;
+    height: 400px;
     margin-top: 20px;
     margin-bottom: 40px;
 }

@@ -24,7 +24,7 @@ h1 {
     width: 1260px;
     height: 400px;
     margin-top: 20px;
-    margin-bottom: 120px; /* Increased from 40px to 120px to create more space */
+    margin-bottom: 400px;
 }
 .slice {
     cursor: pointer;

@@ -120,72 +120,63 @@ function getClientData() {
 
 // Roadmap
 const tabiaRoadmapData = {
-    name: "Tabia",
+    name: "Tabia 2025",
     children: [
         {
             name: "Acquisition",
             children: [
-                { name: "Subcategory A1", value: 20 },
-                { name: "Subcategory A2", value: 30 },
-                {
-                    name: "Subcategory A3",
-                    children: [
-                        { name: "Item A3-1", value: 10 },
-                        { name: "Item A3-2", value: 15 }
-                    ]
-                }
+                { name: "AI Agents", value: 20 },
             ]
         },
         {
             name: "Scheduling",
             children: [
-                { name: "Scheduling AI Agent", value: 25 },
-                { name: "Integrations with EHRs", value: 15 }
+                { name: "AI Agents", value: 50 },
+                { name: "Interoperability", value: 15 },
             ]
         },
         {
             name: "No-show prevention",
             children: [
-                { name: "Productize confirmation", value: 40 },
-                { name: "Subcategory C2", value: 20 }
+                { name: "Productize", value: 30 },
             ]
         },
         {
             name: "No-show recovery",
             children: [
-                { name: "Subcategory C1", value: 40 },
-                { name: "Subcategory C2", value: 20 }
+                { name: "AI Agents", value: 20 },
             ]
         },
         {
             name: "Patient recovery",
             children: [
-                { name: "Subcategory C1", value: 40 },
-                { name: "Subcategory C2", value: 20 }
+                { name: "AI Agents", value: 20 },
             ]
         },
         {
             name: "Care pathway orchestration",
             children: [
-                { name: "Better represent procedures", value: 40 },
-                { name: "More pathway capabilities", value: 20 }
-            ]
-        },
-        {
-            name: "RPM",
-            children: [
-                { name: "Subcategory C1", value: 40 },
-                { name: "Subcategory C2", value: 20 }
+                { name: "Pathway model", value: 30 },
+                { name: "Interoperability", value: 20 },
+                { name: "Support clinical data", value: 10 }
             ]
         },
         {
             name: "Platform / Enablers",
             children: [
-                { name: "EHR data sync", value: 20 },
-                { name: "Integrations", value: 20 },
-                { name: "Optimizations", value: 20 }
+                { name: "Improve interoperability", value: 30 },
+                { name: "Accelerate delivery", value: 20 },
+                { name: "Optimize performance", value: 10 },
             ]
-        }
+        },
+        // {
+        //     name: "RPM",
+        //     children: [
+        //         { name: "Subcategory C1", value: 40 },
+        //         { name: "Subcategory C2", value: 20 }
+        //     ]
+        // },
+
     ]
 };
 

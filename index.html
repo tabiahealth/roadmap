@@ -22,8 +22,8 @@
             font-weight: bold;
         }
         #chart {
-            width: 800px;
-            height: 800px;
+            width: 1260px;
+            height: 1260px;
             margin-top: 20px;
         }
         .slice {
@@ -72,9 +72,8 @@
                 {
                     name: "Scheduling",
                     children: [
-                        { name: "Subcategoria B1", value: 25 },
-                        { name: "Subcategoria B2", value: 15 },
-                        { name: "Subcategoria B3", value: 35 }
+                        { name: "Scheduling AI Agent", value: 25 },
+                        { name: "Integrations with EHRs", value: 15 }
                     ]
                 },
                 {
@@ -101,8 +100,8 @@
                 {
                     name: "Care pathway orchestration",
                     children: [
-                        { name: "Subcategoria C1", value: 40 },
-                        { name: "Subcategoria C2", value: 20 }
+                        { name: "Better represent procedures", value: 40 },
+                        { name: "More pathway capabilities", value: 20 }
                     ]
                 },
                 {
@@ -205,8 +204,18 @@
                 // Ajustar o cálculo de rotação para o layout de meio círculo
                 const x = (d.x0 + d.x1) / 2 - Math.PI/2;  // Ajustar para a rotação do arco
                 const y = (d.y0 + d.y1) / 2;
-                // No meio círculo superior, todos os rótulos devem ser legíveis da esquerda para a direita
-                const rotation = x * 180 / Math.PI;
+
+                // Calcular o ângulo para orientação radial (perpendicular ao arco)
+                // 90 graus adicional faz o texto seguir a direção radial (do centro para fora)
+                let rotation = (x * 180 / Math.PI) + 90;
+
+                // Garantir que o texto seja sempre legível de dentro para fora
+                // Ajustar a rotação para que o texto nunca fique de cabeça para baixo
+                // quando visto do centro para fora
+                if (rotation > 90 && rotation < 270) {
+                    rotation += 180;  // Girar 180 graus para textos que ficariam de cabeça para baixo
+                }
+
                 return `translate(${arc.centroid(d)}) rotate(${rotation})`;
             })
             .attr("text-anchor", "middle")  // Centralizar o texto no segmento

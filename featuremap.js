@@ -5,23 +5,8 @@ function generateFunctionalitiesTable() {
     // Extract all deliverables
     const deliverables = tabiaFunctionalitiesData.map(item => item.deliverable);
 
-    // Extract all unique functionalities
-    const allFunctionalities = [];
-
-    tabiaFunctionalitiesData.forEach(item => {
-        item.functionalities.forEach(functionality => {
-            // Check if this functionality already exists in our list
-            const existingFunc = allFunctionalities.find(f => f.name === functionality.name);
-
-            if (!existingFunc) {
-                // Add new functionality to the list
-                allFunctionalities.push({
-                    name: functionality.name,
-                    subItems: functionality.subItems || []
-                });
-            }
-        });
-    });
+    // Extract all functionalities from the tabiaFunctionalities object
+    const allFunctionalities = Object.values(tabiaFunctionalities);
 
     // Create the header row with deliverables as columns
     const headerRow = document.createElement('tr');
@@ -65,7 +50,7 @@ function generateFunctionalitiesTable() {
             const deliverableObj = tabiaFunctionalitiesData.find(item => item.deliverable === deliverable);
 
             // Check if this functionality exists in this deliverable
-            const exists = deliverableObj.functionalities.some(f => f.name === functionality.name);
+            const exists = deliverableObj.functionalityIds.includes(functionality.id);
 
             // Add a checkmark if the functionality exists in this deliverable
             if (exists) {
@@ -97,11 +82,10 @@ function generateFunctionalitiesTable() {
                     // Find the deliverable object
                     const deliverableObj = tabiaFunctionalitiesData.find(item => item.deliverable === deliverable);
 
-                    // Check if the parent functionality exists in this deliverable and has this sub-item
-                    const parentFunc = deliverableObj.functionalities.find(f => f.name === functionality.name);
-                    const exists = parentFunc && parentFunc.subItems && parentFunc.subItems.includes(subItem);
+                    // Check if the parent functionality exists in this deliverable
+                    const exists = deliverableObj.functionalityIds.includes(functionality.id);
 
-                    // Add a checkmark if the sub-item exists in this deliverable
+                    // Add a checkmark if the parent functionality exists in this deliverable
                     if (exists) {
                         cell.innerHTML = '✓';
                         cell.classList.add('checkmark');

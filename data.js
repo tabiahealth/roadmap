@@ -261,71 +261,76 @@ const tabiaTimelineData = [
     },
 ];
 
+// Define reusable functionality blocks
+const tabiaFunctionalities = {
+    messenger: {
+        id: "messenger",
+        name: "Messenger"
+    },
+    flow: {
+        id: "flow",
+        name: "Flow"
+    },
+    survey: {
+        id: "survey",
+        name: "Survey"
+    },
+    aiAgents: {
+        id: "aiAgents",
+        name: "AI Agents"
+    },
+    pathway: {
+        id: "pathway",
+        name: "Pathway model",
+    },
+    integrations: {
+        id: "interop",
+        name: "Interoperability",
+        subItems: [
+            "FHIR",
+            "SQL",
+            "HTTP"
+        ]
+    },
+    tabiaScore: {
+        id: "tabiaScore",
+        name: "Tabia Score"
+    },
+    manual: {
+        id: "manual",
+        name: "Manual support"
+    }
+};
+
 // Data for the deliverable functionalities table
 const tabiaFunctionalitiesData = [
     {
         deliverable: "Acquisition",
-        functionalities: [
-            { name: "Messenger" },
-            { name: "Subcategory A2" },
-            { 
-                name: "Subcategory A3",
-                subItems: [
-                    "Item A3-1",
-                    "Item A3-2"
-                ]
-            }
-        ]
+        functionalityIds: ["messenger", "flow", "survey", "manual"]
     },
     {
         deliverable: "Scheduling",
-        functionalities: [
-            { name: "Messenger" },
-            { name: "Integrations with EHRs" }
-        ]
+        functionalityIds: ["messenger", "manual"]
     },
     {
         deliverable: "No-show prevention",
-        functionalities: [
-            { name: "Productize confirmation" },
-            { name: "Subcategory C2" }
-        ]
+        functionalityIds: ["messenger", "flow", "aiAgents", "interop", "tabiaScore", "manual"]
     },
     {
         deliverable: "No-show recovery",
-        functionalities: [
-            { name: "Subcategory C1" },
-            { name: "Subcategory C2" }
-        ]
+        functionalityIds: ["messenger", "flow", "survey", "aiAgents", "interop"]
     },
     {
         deliverable: "Patient recovery",
-        functionalities: [
-            { name: "Subcategory C1" },
-            { name: "Subcategory C2" }
-        ]
+        functionalityIds: ["messenger", "survey", "tabiaScore", "manual"]
     },
     {
         deliverable: "Care pathway orchestration",
-        functionalities: [
-            { name: "Better represent procedures" },
-            { name: "More pathway capabilities" }
-        ]
+        functionalityIds: ["messenger", "pathway", "manual"]
     },
     {
         deliverable: "RPM",
-        functionalities: [
-            { name: "Subcategory C1" },
-            { name: "Subcategory C2" }
-        ]
-    },
-    {
-        deliverable: "Platform / Enablers",
-        functionalities: [
-            { name: "EHR data sync" },
-            { name: "Integrations" },
-            { name: "Optimizations" }
-        ]
+        functionalityIds: []
     }
 ];
 

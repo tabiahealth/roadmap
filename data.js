@@ -1,4 +1,4 @@
-// Dados de exemplo para o gráfico sunburst
+// Dados de exemplo para o gráfico roadmap
 const tabiaRoadmapData = {
     name: "Tabia",
     children: [
@@ -68,3 +68,46 @@ const tabiaRoadmapData = {
     ]
 };
 
+// Dados para o gráfico de colunas radial
+const tabiaClientData = [
+    { 
+        category: "Acquisition", 
+        usClients: ["Mayo Clinic", "Cleveland Clinic", "Johns Hopkins"],
+        worldClients: ["Hospital Israelita Albert Einstein", "Hospital Sírio-Libanês", "Clínica Alemana"]
+    },
+    { 
+        category: "Scheduling", 
+        usClients: ["Mount Sinai", "NYU Langone"],
+        worldClients: ["Hospital Universitário de Zurique", "Hospital Charité", "Hospital Karolinska"]
+    },
+    { 
+        category: "No-show prevention", 
+        usClients: ["Stanford Health", "UCSF Medical Center", "UCLA Health"],
+        worldClients: ["Hospital Pitié-Salpêtrière", "Hospital São Lucas"]
+    },
+    { 
+        category: "No-show recovery", 
+        usClients: ["Massachusetts General", "Brigham and Women's"],
+        worldClients: ["Hospital Universitário de Genebra", "Hospital Universitário de Oslo", "Hospital Universitário de Copenhague"]
+    },
+    { 
+        category: "Patient recovery", 
+        usClients: ["Duke University Hospital", "Vanderbilt University Medical Center", "Northwestern Memorial"],
+        worldClients: ["Hospital Universitário La Paz", "Hospital Universitário de Heidelberg"]
+    },
+    { 
+        category: "Care pathway orchestration", 
+        usClients: ["Cedars-Sinai", "Houston Methodist"],
+        worldClients: ["Hospital Universitário de Viena", "Hospital Universitário de Estocolmo", "Hospital Universitário de Amsterdã"]
+    },
+    { 
+        category: "RPM", 
+        usClients: ["NewYork-Presbyterian", "Rush University Medical Center", "Barnes-Jewish Hospital"],
+        worldClients: ["Hospital Universitário de Barcelona", "Hospital Universitário de Milão"]
+    },
+    { 
+        category: "Platform / Enablers", 
+        usClients: ["University of Michigan Hospital", "UPMC"],
+        worldClients: ["Hospital Universitário de Toronto", "Hospital Universitário de Sydney", "Hospital Universitário de Singapura"]
+    }
+];

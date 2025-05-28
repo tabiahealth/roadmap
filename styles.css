@@ -13,7 +13,7 @@ h1 {
     text-align: center;
     font-weight: bold;
 }
-#chart1, #chart2 {
+#chart1, #chart2, #chart3 {
     width: 1260px;
     height: 1260px;
     margin-top: 20px;

@@ -10,17 +10,24 @@
 <body>
     <h1>Tabia Roadmap for 2025</h1>
     <div id="chart1"></div>
+
+    <h1>Distribuição de Clientes por Categoria</h1>
+    <div id="chart3"></div>
+
     <!-- Carregar os dados -->
     <script src="data.js"></script>
 
-    <!-- Carregar a função do gráfico roadmap -->
+    <!-- Carregar as funções dos gráficos -->
     <script src="roadmap.js"></script>
+    <script src="radialcolumn.js"></script>
 
     <!-- Inicializar os gráficos -->
     <script>
-        // Criar o primeiro gráfico com os dados do roadmap da Tabia
+        // Criar o gráfico roadmap com os dados do roadmap da Tabia
         createRoadmapChart(tabiaRoadmapData, "chart1");
 
+        // Criar o gráfico de colunas radial com os dados de clientes
+        createRadialColumnChart(tabiaClientData, "chart3");
     </script>
 </body>
 </html>

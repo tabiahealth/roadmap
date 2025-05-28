@@ -3,82 +3,98 @@ const tabiaData = [
     {
         category: "Acquisition",
         clients: [
-            { name: "Mayo Clinic", region: "USA", solutionType: "automated" },
-            { name: "Cleveland Clinic", region: "USA", solutionType: "automated" },
-            { name: "Johns Hopkins", region: "USA", solutionType: "semiAutomated" },
-            { name: "Albert Einstein Israelite Hospital", region: "World", solutionType: "automated" },
-            { name: "Sírio-Libanês Hospital", region: "World", solutionType: "semiAutomated" },
-            { name: "German Clinic", region: "World", solutionType: "semiAutomated" }
+            { name: "DASA", region: "World", solutionType: "semiAutomated" },
+            { name: "Hapvida", region: "World", solutionType: "semiAutomated" },
+            { name: "Medstation", region: "USA", solutionType: "semiAutomated" },
+            { name: "Vitalwork", region: "World", solutionType: "semiAutomated" },
+            { name: "Hemocione", region: "World", solutionType: "semiAutomated" },
+            { name: "Agir", region: "World", solutionType: "semiAutomated" },
         ]
     },
     {
         category: "Scheduling",
         clients: [
-            { name: "Mount Sinai", region: "USA", solutionType: "automated" },
-            { name: "NYU Langone", region: "USA", solutionType: "semiAutomated" },
-            { name: "University Hospital of Zurich", region: "World", solutionType: "automated" },
-            { name: "Charité Hospital", region: "World", solutionType: "semiAutomated" },
-            { name: "Karolinska Hospital", region: "World", solutionType: "automated" }
+            { name: "VER Prime", region: "World", solutionType: "semiAutomated" },
+            { name: "VER Anápolis", region: "World", solutionType: "semiAutomated" },
+            { name: "HO Tocantins", region: "World", solutionType: "semiAutomated" },
+            { name: "Moinhos de Vento", region: "World", solutionType: "semiAutomated" },
+            { name: "Medstation", region: "USA", solutionType: "semiAutomated" },
+            { name: "AHVI", region: "USA", solutionType: "semiAutomated" },
+            { name: "Prontocardio", region: "World", solutionType: "semiAutomated" },
+            { name: "Oftalmed", region: "World", solutionType: "semiAutomated" },
+            { name: "HCO", region: "World", solutionType: "semiAutomated" },
+            { name: "CDO", region: "World", solutionType: "semiAutomated" },
+            { name: "IDV", region: "World", solutionType: "semiAutomated" },
+            { name: "Prima Pelle", region: "World", solutionType: "semiAutomated" },
+            { name: "Agir", region: "World", solutionType: "semiAutomated" },
         ]
     },
     {
         category: "No-show prevention",
         clients: [
-            { name: "Stanford Health", region: "USA", solutionType: "automated" },
-            { name: "UCSF Medical Center", region: "USA", solutionType: "semiAutomated" },
-            { name: "UCLA Health", region: "USA", solutionType: "automated" },
-            { name: "Pitié-Salpêtrière Hospital", region: "World", solutionType: "semiAutomated" },
-            { name: "São Lucas Hospital", region: "World", solutionType: "automated" }
+            { name: "RVA", region: "World", solutionType: "automated" },
+            { name: "VER Prime", region: "World", solutionType: "semiAutomated" },
+            { name: "VER Anápolis", region: "World", solutionType: "semiAutomated" },
+            { name: "HO Tocantins", region: "World", solutionType: "semiAutomated" },
+            { name: "Moinhos de Vento", region: "World", solutionType: "semiAutomated" },
+            { name: "Medstation", region: "USA", solutionType: "semiAutomated" },
+            { name: "Prontocardio", region: "World", solutionType: "semiAutomated" },
+            { name: "Oftalmed", region: "World", solutionType: "semiAutomated" },
+            { name: "HCO", region: "World", solutionType: "semiAutomated" },
+            { name: "CDO", region: "World", solutionType: "semiAutomated" },
+            { name: "IDV", region: "World", solutionType: "semiAutomated" },
+            { name: "Prima Pelle", region: "World", solutionType: "semiAutomated" },
+            { name: "Agir", region: "World", solutionType: "semiAutomated" },
         ]
     },
     {
         category: "No-show recovery",
         clients: [
-            { name: "Massachusetts General", region: "USA", solutionType: "automated" },
-            { name: "Brigham and Women's", region: "USA", solutionType: "semiAutomated" },
-            { name: "University Hospital of Geneva", region: "World", solutionType: "automated" },
-            { name: "University Hospital of Oslo", region: "World", solutionType: "semiAutomated" },
-            { name: "University Hospital of Copenhagen", region: "World", solutionType: "automated" }
+            { name: "RVA", region: "World", solutionType: "automated" },
         ]
     },
     {
         category: "Patient recovery",
         clients: [
-            { name: "Duke University Hospital", region: "USA", solutionType: "automated" },
-            { name: "Vanderbilt University Medical Center", region: "USA", solutionType: "semiAutomated" },
-            { name: "Northwestern Memorial", region: "USA", solutionType: "automated" },
-            { name: "La Paz University Hospital", region: "World", solutionType: "semiAutomated" },
-            { name: "University Hospital of Heidelberg", region: "World", solutionType: "automated" }
+            { name: "Moinhos de Vento", region: "World", solutionType: "semiAutomated" },
+            { name: "Hapvida", region: "World", solutionType: "semiAutomated" },
+            { name: "VER Prime", region: "World", solutionType: "semiAutomated" },
+            { name: "VER Anápolis", region: "World", solutionType: "semiAutomated" },
+            { name: "HO Tocantins", region: "World", solutionType: "semiAutomated" },
+            { name: "Medstation", region: "USA", solutionType: "semiAutomated" },
+            { name: "AHVI", region: "USA", solutionType: "semiAutomated" },
+            { name: "Prontocardio", region: "World", solutionType: "semiAutomated" },
+            { name: "Oftalmed", region: "World", solutionType: "semiAutomated" },
+            { name: "HCO", region: "World", solutionType: "semiAutomated" },
+            { name: "CDO", region: "World", solutionType: "semiAutomated" },
+            { name: "IDV", region: "World", solutionType: "semiAutomated" },
+            { name: "Prima Pelle", region: "World", solutionType: "semiAutomated" },
+            { name: "Agir", region: "World", solutionType: "semiAutomated" },
+            { name: "Hemocione", region: "World", solutionType: "semiAutomated" },
         ]
     },
     {
         category: "Care pathway orchestration",
         clients: [
-            { name: "Cedars-Sinai", region: "USA", solutionType: "automated" },
-            { name: "Houston Methodist", region: "USA", solutionType: "semiAutomated" },
-            { name: "University Hospital of Vienna", region: "World", solutionType: "automated" },
-            { name: "University Hospital of Stockholm", region: "World", solutionType: "semiAutomated" },
-            { name: "University Hospital of Amsterdam", region: "World", solutionType: "automated" }
+            { name: "Moinhos de Vento", region: "World", solutionType: "semiAutomated" },
+            { name: "Hapvida", region: "World", solutionType: "semiAutomated" },
+            { name: "VER Prime", region: "World", solutionType: "semiAutomated" },
+            { name: "VER Anápolis", region: "World", solutionType: "semiAutomated" },
+            { name: "HO Tocantins", region: "World", solutionType: "semiAutomated" },
+            { name: "Prontocardio", region: "World", solutionType: "semiAutomated" },
+            { name: "Oftalmed", region: "World", solutionType: "semiAutomated" },
+            { name: "HCO", region: "World", solutionType: "semiAutomated" },
+            { name: "CDO", region: "World", solutionType: "semiAutomated" },
+            { name: "IDV", region: "World", solutionType: "semiAutomated" },
+            { name: "Prima Pelle", region: "World", solutionType: "semiAutomated" },
+            { name: "Agir", region: "World", solutionType: "semiAutomated" },
+            { name: "Hemocione", region: "World", solutionType: "semiAutomated" },
         ]
     },
     {
         category: "RPM",
         clients: [
-            { name: "NewYork-Presbyterian", region: "USA", solutionType: "automated" },
-            { name: "Rush University Medical Center", region: "USA", solutionType: "semiAutomated" },
-            { name: "Barnes-Jewish Hospital", region: "USA", solutionType: "automated" },
-            { name: "University Hospital of Barcelona", region: "World", solutionType: "semiAutomated" },
-            { name: "University Hospital of Milan", region: "World", solutionType: "automated" }
-        ]
-    },
-    {
-        category: "Platform / Enablers",
-        clients: [
-            { name: "University of Michigan Hospital", region: "USA", solutionType: "automated" },
-            { name: "UPMC", region: "USA", solutionType: "semiAutomated" },
-            { name: "University Hospital of Toronto", region: "World", solutionType: "automated" },
-            { name: "University Hospital of Sydney", region: "World", solutionType: "semiAutomated" },
-            { name: "University Hospital of Singapore", region: "World", solutionType: "automated" }
+
         ]
     }
 ];
@@ -216,18 +232,18 @@ const tabiaTimelineData = [
     },
     {
         date: new Date(2024, 11, 12), // December 12, 2024
-        milestone: "Official Release",
+        milestone: "Scheduling (semi-auto) deployed at HCC",
         description: "Version 1.0 officially released to the market"
     },
     {
         date: new Date(2025, 4, 1), // May 1, 2025
-        milestone: "Feature Update",
+        milestone: "Confirmation (auto) deployed at RVA",
         description: "Major feature update released (version 1.5)"
     },
     // Future milestones
     {
         date: new Date(2025, 7, 15), // August 15, 2025
-        milestone: "Global Expansion",
+        milestone: "Scheduling (auto) deployment in BR",
         description: "Launch in international markets",
         future: true
     },

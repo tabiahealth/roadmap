@@ -68,90 +68,129 @@ const tabiaRoadmapData = {
     ]
 };
 
-// Data for the radial column chart
-const tabiaClientData = [
-    { 
-        category: "Acquisition", 
-        usClients: ["Mayo Clinic", "Cleveland Clinic", "Johns Hopkins"],
-        worldClients: ["Albert Einstein Israelite Hospital", "Sírio-Libanês Hospital", "German Clinic"]
+// Centralized data structure for all charts
+const tabiaData = [
+    {
+        category: "Acquisition",
+        clients: [
+            { name: "Mayo Clinic", region: "USA", solutionType: "automated" },
+            { name: "Cleveland Clinic", region: "USA", solutionType: "automated" },
+            { name: "Johns Hopkins", region: "USA", solutionType: "semiAutomated" },
+            { name: "Albert Einstein Israelite Hospital", region: "World", solutionType: "automated" },
+            { name: "Sírio-Libanês Hospital", region: "World", solutionType: "semiAutomated" },
+            { name: "German Clinic", region: "World", solutionType: "semiAutomated" }
+        ]
     },
-    { 
-        category: "Scheduling", 
-        usClients: ["Mount Sinai", "NYU Langone"],
-        worldClients: ["University Hospital of Zurich", "Charité Hospital", "Karolinska Hospital"]
+    {
+        category: "Scheduling",
+        clients: [
+            { name: "Mount Sinai", region: "USA", solutionType: "automated" },
+            { name: "NYU Langone", region: "USA", solutionType: "semiAutomated" },
+            { name: "University Hospital of Zurich", region: "World", solutionType: "automated" },
+            { name: "Charité Hospital", region: "World", solutionType: "semiAutomated" },
+            { name: "Karolinska Hospital", region: "World", solutionType: "automated" }
+        ]
     },
-    { 
-        category: "No-show prevention", 
-        usClients: ["Stanford Health", "UCSF Medical Center", "UCLA Health"],
-        worldClients: ["Pitié-Salpêtrière Hospital", "São Lucas Hospital"]
+    {
+        category: "No-show prevention",
+        clients: [
+            { name: "Stanford Health", region: "USA", solutionType: "automated" },
+            { name: "UCSF Medical Center", region: "USA", solutionType: "semiAutomated" },
+            { name: "UCLA Health", region: "USA", solutionType: "automated" },
+            { name: "Pitié-Salpêtrière Hospital", region: "World", solutionType: "semiAutomated" },
+            { name: "São Lucas Hospital", region: "World", solutionType: "automated" }
+        ]
     },
-    { 
-        category: "No-show recovery", 
-        usClients: ["Massachusetts General", "Brigham and Women's"],
-        worldClients: ["University Hospital of Geneva", "University Hospital of Oslo", "University Hospital of Copenhagen"]
+    {
+        category: "No-show recovery",
+        clients: [
+            { name: "Massachusetts General", region: "USA", solutionType: "automated" },
+            { name: "Brigham and Women's", region: "USA", solutionType: "semiAutomated" },
+            { name: "University Hospital of Geneva", region: "World", solutionType: "automated" },
+            { name: "University Hospital of Oslo", region: "World", solutionType: "semiAutomated" },
+            { name: "University Hospital of Copenhagen", region: "World", solutionType: "automated" }
+        ]
     },
-    { 
-        category: "Patient recovery", 
-        usClients: ["Duke University Hospital", "Vanderbilt University Medical Center", "Northwestern Memorial"],
-        worldClients: ["La Paz University Hospital", "University Hospital of Heidelberg"]
+    {
+        category: "Patient recovery",
+        clients: [
+            { name: "Duke University Hospital", region: "USA", solutionType: "automated" },
+            { name: "Vanderbilt University Medical Center", region: "USA", solutionType: "semiAutomated" },
+            { name: "Northwestern Memorial", region: "USA", solutionType: "automated" },
+            { name: "La Paz University Hospital", region: "World", solutionType: "semiAutomated" },
+            { name: "University Hospital of Heidelberg", region: "World", solutionType: "automated" }
+        ]
     },
-    { 
-        category: "Care pathway orchestration", 
-        usClients: ["Cedars-Sinai", "Houston Methodist"],
-        worldClients: ["University Hospital of Vienna", "University Hospital of Stockholm", "University Hospital of Amsterdam"]
+    {
+        category: "Care pathway orchestration",
+        clients: [
+            { name: "Cedars-Sinai", region: "USA", solutionType: "automated" },
+            { name: "Houston Methodist", region: "USA", solutionType: "semiAutomated" },
+            { name: "University Hospital of Vienna", region: "World", solutionType: "automated" },
+            { name: "University Hospital of Stockholm", region: "World", solutionType: "semiAutomated" },
+            { name: "University Hospital of Amsterdam", region: "World", solutionType: "automated" }
+        ]
     },
-    { 
-        category: "RPM", 
-        usClients: ["NewYork-Presbyterian", "Rush University Medical Center", "Barnes-Jewish Hospital"],
-        worldClients: ["University Hospital of Barcelona", "University Hospital of Milan"]
+    {
+        category: "RPM",
+        clients: [
+            { name: "NewYork-Presbyterian", region: "USA", solutionType: "automated" },
+            { name: "Rush University Medical Center", region: "USA", solutionType: "semiAutomated" },
+            { name: "Barnes-Jewish Hospital", region: "USA", solutionType: "automated" },
+            { name: "University Hospital of Barcelona", region: "World", solutionType: "semiAutomated" },
+            { name: "University Hospital of Milan", region: "World", solutionType: "automated" }
+        ]
     },
-    { 
-        category: "Platform / Enablers", 
-        usClients: ["University of Michigan Hospital", "UPMC"],
-        worldClients: ["University Hospital of Toronto", "University Hospital of Sydney", "University Hospital of Singapore"]
+    {
+        category: "Platform / Enablers",
+        clients: [
+            { name: "University of Michigan Hospital", region: "USA", solutionType: "automated" },
+            { name: "UPMC", region: "USA", solutionType: "semiAutomated" },
+            { name: "University Hospital of Toronto", region: "World", solutionType: "automated" },
+            { name: "University Hospital of Sydney", region: "World", solutionType: "semiAutomated" },
+            { name: "University Hospital of Singapore", region: "World", solutionType: "automated" }
+        ]
     }
 ];
 
-// Data for the automated and semi-automated solutions chart
-const tabiaSolutionsData = [
-    { 
-        category: "Acquisition", 
-        automated: ["Online Scheduling", "Triage Chatbot", "Patient Portal"],
-        semiAutomated: ["Virtual Assistant", "Smart Forms"]
-    },
-    { 
-        category: "Scheduling", 
-        automated: ["Optimization Algorithm", "Reminder System"],
-        semiAutomated: ["Scheduling Assistant", "Schedule Recommender", "Queue Manager"]
-    },
-    { 
-        category: "No-show prevention", 
-        automated: ["SMS Reminder System", "Automatic Confirmation"],
-        semiAutomated: ["Predictive Analysis", "Engagement Manager"]
-    },
-    { 
-        category: "No-show recovery", 
-        automated: ["Automatic Slot Filling", "Availability Notification"],
-        semiAutomated: ["Rescheduling Assistant", "Patient Prioritizer"]
-    },
-    { 
-        category: "Patient recovery", 
-        automated: ["Remote Monitoring", "Medication Reminders"],
-        semiAutomated: ["Recovery Assistant", "Progress Analysis", "Personalized Care Plan"]
-    },
-    { 
-        category: "Care pathway orchestration", 
-        automated: ["Automated Workflow", "System Integration"],
-        semiAutomated: ["Care Assistant", "Protocol Manager", "Team Coordinator"]
-    },
-    { 
-        category: "RPM", 
-        automated: ["Automatic Data Collection", "Anomaly Alerts", "Real-time Dashboard"],
-        semiAutomated: ["Trend Analysis", "Intervention Recommender"]
-    },
-    { 
-        category: "Platform / Enablers", 
-        automated: ["Integration APIs", "Batch Data Processing", "Secure Authentication"],
-        semiAutomated: ["Analysis Tools", "Flow Configurator", "Permissions Manager"]
-    }
-];
+// Utility function to transform the centralized data structure for client distribution chart
+function getClientData() {
+    return tabiaData.map(category => {
+        const usClients = category.clients
+            .filter(client => client.region === "USA")
+            .map(client => client.name);
+
+        const worldClients = category.clients
+            .filter(client => client.region === "World")
+            .map(client => client.name);
+
+        return {
+            category: category.category,
+            usClients: usClients,
+            worldClients: worldClients
+        };
+    });
+}
+
+// Utility function to transform the centralized data structure for solutions chart
+function getSolutionsData() {
+    return tabiaData.map(category => {
+        const automated = category.clients
+            .filter(client => client.solutionType === "automated")
+            .map(client => client.name);
+
+        const semiAutomated = category.clients
+            .filter(client => client.solutionType === "semiAutomated")
+            .map(client => client.name);
+
+        return {
+            category: category.category,
+            automated: automated,
+            semiAutomated: semiAutomated
+        };
+    });
+}
+
+// Data for the radial column charts
+const tabiaClientData = getClientData();
+const tabiaSolutionsData = getSolutionsData();

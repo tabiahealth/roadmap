@@ -14,6 +14,9 @@
     <h1>Distribuição de Clientes por Categoria</h1>
     <div id="chart3"></div>
 
+    <h1>Soluções Automatizadas e Semi-automatizadas por Categoria</h1>
+    <div id="chart4"></div>
+
     <!-- Carregar os dados -->
     <script src="data.js"></script>
 
@@ -28,6 +31,9 @@
 
         // Criar o gráfico de colunas radial com os dados de clientes
         createRadialColumnChart(tabiaClientData, "chart3");
+
+        // Criar o gráfico de colunas radial com os dados de soluções automatizadas e semi-automatizadas
+        createRadialColumnChart(tabiaSolutionsData, "chart4", "automated", "semiAutomated", "Automatizadas", "Semi-automatizadas");
     </script>
 </body>
 </html>

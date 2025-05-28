@@ -111,3 +111,47 @@ const tabiaClientData = [
         worldClients: ["Hospital Universitário de Toronto", "Hospital Universitário de Sydney", "Hospital Universitário de Singapura"]
     }
 ];
+
+// Dados para o gráfico de soluções automatizadas e semi-automatizadas
+const tabiaSolutionsData = [
+    { 
+        category: "Acquisition", 
+        automated: ["Agendamento Online", "Chatbot de Triagem", "Portal do Paciente"],
+        semiAutomated: ["Assistente Virtual", "Formulários Inteligentes"]
+    },
+    { 
+        category: "Scheduling", 
+        automated: ["Algoritmo de Otimização", "Sistema de Lembretes"],
+        semiAutomated: ["Assistente de Agendamento", "Recomendador de Horários", "Gestor de Filas"]
+    },
+    { 
+        category: "No-show prevention", 
+        automated: ["Sistema de Lembretes SMS", "Confirmação Automática"],
+        semiAutomated: ["Análise Preditiva", "Gestor de Engajamento"]
+    },
+    { 
+        category: "No-show recovery", 
+        automated: ["Preenchimento Automático de Vagas", "Notificação de Disponibilidade"],
+        semiAutomated: ["Assistente de Reagendamento", "Priorizador de Pacientes"]
+    },
+    { 
+        category: "Patient recovery", 
+        automated: ["Monitoramento Remoto", "Lembretes de Medicação"],
+        semiAutomated: ["Assistente de Recuperação", "Análise de Progresso", "Plano de Cuidados Personalizado"]
+    },
+    { 
+        category: "Care pathway orchestration", 
+        automated: ["Fluxo de Trabalho Automatizado", "Integração de Sistemas"],
+        semiAutomated: ["Assistente de Cuidados", "Gestor de Protocolos", "Coordenador de Equipe"]
+    },
+    { 
+        category: "RPM", 
+        automated: ["Coleta Automática de Dados", "Alertas de Anomalias", "Dashboard em Tempo Real"],
+        semiAutomated: ["Análise de Tendências", "Recomendador de Intervenções"]
+    },
+    { 
+        category: "Platform / Enablers", 
+        automated: ["APIs de Integração", "Processamento de Dados em Lote", "Autenticação Segura"],
+        semiAutomated: ["Ferramentas de Análise", "Configurador de Fluxos", "Gestor de Permissões"]
+    }
+];

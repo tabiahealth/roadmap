@@ -1,5 +1,5 @@
 // Função para criar um gráfico de colunas radial
-function createRadialColumnChart(data, containerId) {
+function createRadialColumnChart(data, containerId, firstProp = "usClients", secondProp = "worldClients", firstLabel = "EUA", secondLabel = "Mundo") {
     // Configurar dimensões
     const width = 1260;
     const height = 1260;
@@ -24,26 +24,26 @@ function createRadialColumnChart(data, containerId) {
         .range([0, Math.PI])
         .padding(0.1);
 
-    // Encontrar o valor máximo para a escala y (agora baseado no número de clientes em cada array)
-    const maxValue = d3.max(data, d => Math.max(d.usClients.length, d.worldClients.length));
+    // Encontrar o valor máximo para a escala y (agora baseado no número de itens em cada array)
+    const maxValue = d3.max(data, d => Math.max(d[firstProp].length, d[secondProp].length));
     const y = d3.scaleRadial()
         .domain([0, maxValue])
         .range([innerRadius, outerRadius]);
 
     // Criar escala de cores
     const color = d3.scaleOrdinal()
-        .domain(["usClients", "worldClients"])
+        .domain([firstProp, secondProp])
         .range(["#4e79a7", "#f28e2c"]);
 
     // Adicionar eixo x (categorias) - um label para cada coluna
-    // Primeiro, criar um array com todas as colunas (US e World para cada categoria)
+    // Primeiro, criar um array com todas as colunas (primeira e segunda propriedade para cada categoria)
     const columnData = [];
     categories.forEach(category => {
-        columnData.push({ category: category, type: "usClients", label: "EUA" });
-        columnData.push({ category: category, type: "worldClients", label: "Mundo" });
+        columnData.push({ category: category, type: firstProp, label: firstLabel });
+        columnData.push({ category: category, type: secondProp, label: secondLabel });
     });
 
-    // Adicionar labels para as colunas (EUA e Mundo)
+    // Adicionar labels para as colunas
     svg.append("g")
         .selectAll("g")
         .data(columnData)
@@ -52,17 +52,17 @@ function createRadialColumnChart(data, containerId) {
         .attr("text-anchor", "middle") // Centralizar o texto
         .attr("transform", function(d) {
             // Calcular o ângulo baseado na posição da coluna
-            const offset = d.type === "usClients" ? 0 : x.bandwidth() / 2;
+            const offset = d.type === firstProp ? 0 : x.bandwidth() / 2;
             const barWidth = x.bandwidth() / 2 * 0.9;
             const angle = x(d.category) + offset + barWidth / 2 - Math.PI/2;
             // Posicionar exatamente no innerRadius para ficar na base das colunas
             return `rotate(${angle * 180 / Math.PI}) translate(${innerRadius},0)`;
         })
         .append("text")
-        .text(d => d.label) // Mostrar apenas o tipo (EUA ou Mundo)
+        .text(d => d.label) // Mostrar o label (primeiro ou segundo)
         .attr("transform", function(d) {
             // Calcular o ângulo baseado na posição da coluna
-            const offset = d.type === "usClients" ? 0 : x.bandwidth() / 2;
+            const offset = d.type === firstProp ? 0 : x.bandwidth() / 2;
             const barWidth = x.bandwidth() / 2 * 0.9;
             const angle = x(d.category) + offset + barWidth / 2 - Math.PI/2;
             // Ajustar a rotação para alinhar com a direção da coluna
@@ -70,7 +70,7 @@ function createRadialColumnChart(data, containerId) {
         })
         .style("font-size", "14px") // Aumentar o tamanho da fonte
         .style("font-weight", "bold")
-        .style("fill", d => d.type === "usClients" ? color("usClients") : color("worldClients")) // Colorir o texto de acordo com a coluna
+        .style("fill", d => d.type === firstProp ? color(firstProp) : color(secondProp)) // Colorir o texto de acordo com a coluna
         .attr("alignment-baseline", "middle")
         .attr("dy", "0.35em"); // Ajuste fino para centralização vertical
 
@@ -138,7 +138,7 @@ function createRadialColumnChart(data, containerId) {
         .style("opacity", 0);
 
     // Função para criar barras
-    function createBars(data, key, offset, color) {
+    function createBars(data, key, offset, color, label) {
         const barWidth = x.bandwidth() / 2 * 0.9; // Largura da barra (metade do espaço disponível)
 
         svg.append("g")
@@ -167,12 +167,10 @@ function createRadialColumnChart(data, containerId) {
                     .duration(200)
                     .style("opacity", 0.9);
 
-                const label = key === "usClients" ? "Clientes nos EUA" : "Clientes no Resto do Mundo";
+                // Criar uma lista HTML com os nomes dos itens
+                const itemList = d[key].map(item => `<li>${item}</li>`).join('');
 
-                // Criar uma lista HTML com os nomes dos clientes
-                const clientList = d[key].map(client => `<li>${client}</li>`).join('');
-
-                tooltip.html(`<strong>${d.category}</strong><br>${label}:<ul style="margin: 5px 0; padding-left: 20px;">${clientList}</ul>`)
+                tooltip.html(`<strong>${d.category}</strong><br>${label}:<ul style="margin: 5px 0; padding-left: 20px;">${itemList}</ul>`)
                     .style("left", (event.pageX + 10) + "px")
                     .style("top", (event.pageY - 28) + "px");
             })
@@ -185,26 +183,26 @@ function createRadialColumnChart(data, containerId) {
             });
     }
 
-    // Criar barras para clientes nos EUA
-    createBars(data, "usClients", 0, color("usClients"));
+    // Criar barras para a primeira propriedade
+    createBars(data, firstProp, 0, color(firstProp), firstLabel);
 
-    // Criar barras para clientes no resto do mundo
-    createBars(data, "worldClients", x.bandwidth() / 2, color("worldClients"));
+    // Criar barras para a segunda propriedade
+    createBars(data, secondProp, x.bandwidth() / 2, color(secondProp), secondLabel);
 
     // Adicionar legenda
     const legend = svg.append("g")
         .attr("transform", `translate(${-width/4}, ${-height/2 + 40})`);
 
     const legendData = [
-        { key: "usClients", label: "Clientes nos EUA" },
-        { key: "worldClients", label: "Clientes no Resto do Mundo" }
+        { key: firstProp, label: firstLabel },
+        { key: secondProp, label: secondLabel }
     ];
 
     // Adicionar texto explicativo abaixo da legenda
     legend.append("text")
         .attr("x", 0)
         .attr("y", 60)
-        .text("* A altura das barras representa o número de clientes")
+        .text("* A altura das barras representa o número de itens")
         .style("font-size", "12px")
         .style("font-style", "italic");
 

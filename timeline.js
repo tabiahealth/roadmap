@@ -18,9 +18,15 @@ function createTimelineChart(data, containerId) {
         .append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
 
+    // Find the date of the last non-future milestone
+    const presentEndDate = new Date(2025, 4, 31); // May 31, 2025
+
+    // Find the date of the last future milestone
+    const futureEndDate = new Date(2026, 3, 30); // April 30, 2026
+
     // Define time scale
     const timeScale = d3.scaleTime()
-        .domain([new Date(2024, 0, 1), new Date(2025, 4, 31)]) // Jan 1, 2024 to May 31, 2025
+        .domain([new Date(2024, 0, 1), futureEndDate]) // Jan 1, 2024 to April 30, 2026
         .range([0, innerWidth]);
 
     // Create x-axis
@@ -39,14 +45,27 @@ function createTimelineChart(data, containerId) {
         .attr("dy", ".15em")
         .attr("transform", "rotate(-45)");
 
-    // Add a horizontal line for the timeline
+    // Calculate the x-coordinate for the present/future boundary
+    const presentEndX = timeScale(presentEndDate);
+
+    // Add a solid horizontal line for the present timeline
     svg.append("line")
         .attr("x1", 0)
+        .attr("y1", innerHeight / 2)
+        .attr("x2", presentEndX)
+        .attr("y2", innerHeight / 2)
+        .attr("stroke", "#ccc")
+        .attr("stroke-width", 2);
+
+    // Add a dotted horizontal line for the future timeline
+    svg.append("line")
+        .attr("x1", presentEndX)
         .attr("y1", innerHeight / 2)
         .attr("x2", innerWidth)
         .attr("y2", innerHeight / 2)
         .attr("stroke", "#ccc")
-        .attr("stroke-width", 2);
+        .attr("stroke-width", 2)
+        .attr("stroke-dasharray", "5,5"); // This creates the dotted line
 
     // Create tooltip
     const tooltip = d3.select("body")
@@ -65,23 +84,25 @@ function createTimelineChart(data, containerId) {
     // Add circles for milestones
     milestones.append("circle")
         .attr("r", 10)
-        .attr("fill", "#4e79a7")
+        .attr("fill", d => d.future ? "#f28e2c" : "#4e79a7") // Different color for future milestones
         .attr("stroke", "#fff")
         .attr("stroke-width", 2)
+        .style("stroke-dasharray", d => d.future ? "2,2" : "none") // Dotted stroke for future milestones
         .on("mouseover", function(event, d) {
             d3.select(this).attr("r", 12);
-            
+
             tooltip.transition()
                 .duration(200)
                 .style("opacity", 0.9);
-            
-            tooltip.html(`<strong>${d.milestone}</strong><br>${d.date.toLocaleDateString()}<br>${d.description}`)
+
+            let status = d.future ? "Future Milestone" : "Current Milestone";
+            tooltip.html(`<strong>${d.milestone}</strong><br>${d.date.toLocaleDateString()}<br>${d.description}<br><em>${status}</em>`)
                 .style("left", (event.pageX + 10) + "px")
                 .style("top", (event.pageY - 28) + "px");
         })
         .on("mouseout", function() {
             d3.select(this).attr("r", 10);
-            
+
             tooltip.transition()
                 .duration(500)
                 .style("opacity", 0);
@@ -112,4 +133,72 @@ function createTimelineChart(data, containerId) {
         .style("font-size", "18px")
         .style("font-weight", "bold")
         .text("Product Timeline");
+
+    // Add legend
+    const legend = svg.append("g")
+        .attr("transform", `translate(${innerWidth - 200}, 20)`);
+
+    // Current milestone legend item
+    legend.append("circle")
+        .attr("cx", 0)
+        .attr("cy", 0)
+        .attr("r", 6)
+        .attr("fill", "#4e79a7")
+        .attr("stroke", "#fff")
+        .attr("stroke-width", 1);
+
+    legend.append("text")
+        .attr("x", 15)
+        .attr("y", 4)
+        .text("Current Milestone")
+        .style("font-size", "12px");
+
+    // Future milestone legend item
+    legend.append("circle")
+        .attr("cx", 0)
+        .attr("cy", 20)
+        .attr("r", 6)
+        .attr("fill", "#f28e2c")
+        .attr("stroke", "#fff")
+        .attr("stroke-width", 1)
+        .style("stroke-dasharray", "2,2");
+
+    legend.append("text")
+        .attr("x", 15)
+        .attr("y", 24)
+        .text("Future Milestone")
+        .style("font-size", "12px");
+
+    // Timeline legend
+    const timelineLegend = svg.append("g")
+        .attr("transform", `translate(${innerWidth - 200}, 60)`);
+
+    timelineLegend.append("line")
+        .attr("x1", 0)
+        .attr("y1", 0)
+        .attr("x2", 30)
+        .attr("y2", 0)
+        .attr("stroke", "#ccc")
+        .attr("stroke-width", 2);
+
+    timelineLegend.append("text")
+        .attr("x", 40)
+        .attr("y", 4)
+        .text("Current Timeline")
+        .style("font-size", "12px");
+
+    timelineLegend.append("line")
+        .attr("x1", 0)
+        .attr("y1", 20)
+        .attr("x2", 30)
+        .attr("y2", 20)
+        .attr("stroke", "#ccc")
+        .attr("stroke-width", 2)
+        .attr("stroke-dasharray", "5,5");
+
+    timelineLegend.append("text")
+        .attr("x", 40)
+        .attr("y", 24)
+        .text("Future Timeline")
+        .style("font-size", "12px");
 }

@@ -223,6 +223,25 @@ const tabiaTimelineData = [
         date: new Date(2025, 4, 1), // May 1, 2025
         milestone: "Feature Update",
         description: "Major feature update released (version 1.5)"
+    },
+    // Future milestones
+    {
+        date: new Date(2025, 7, 15), // August 15, 2025
+        milestone: "Global Expansion",
+        description: "Launch in international markets",
+        future: true
+    },
+    {
+        date: new Date(2025, 11, 10), // December 10, 2025
+        milestone: "Version 2.0",
+        description: "Major version update with new features",
+        future: true
+    },
+    {
+        date: new Date(2026, 2, 20), // March 20, 2026
+        milestone: "Mobile App Launch",
+        description: "Release of companion mobile application",
+        future: true
     }
 ];
 

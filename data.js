@@ -260,7 +260,7 @@ const tabiaFunctionalities = {
     },
     flow: {
         id: "flow",
-        name: "Flow"
+        name: "Flow engine"
     },
     survey: {
         id: "survey",
@@ -272,7 +272,19 @@ const tabiaFunctionalities = {
     },
     pathway: {
         id: "pathway",
-        name: "Pathway model",
+        name: "Pathway engine",
+    },
+    medicalCodes: {
+        id: "medicalCodes",
+        name: "Medical codes",
+    },
+    insurance: {
+        id: "insurance",
+        name: "Insurance plans",
+    },
+    tasks: {
+        id: "tasks",
+        name: "Task Management"
     },
     integrations: {
         id: "interop",
@@ -287,9 +299,13 @@ const tabiaFunctionalities = {
         id: "tabiaScore",
         name: "Tabia Score"
     },
+    automated: {
+        id: "automated",
+        name: "Fully automated"
+    },
     manual: {
         id: "manual",
-        name: "Manual support"
+        name: "Manual mode support"
     }
 };
 
@@ -297,27 +313,27 @@ const tabiaFunctionalities = {
 const tabiaFunctionalitiesData = [
     {
         deliverable: "Acquisition",
-        functionalityIds: ["messenger", "flow", "survey", "manual"]
+        functionalityIds: ["messenger", "flow", "tasks", "survey", "manual"]
     },
     {
         deliverable: "Scheduling",
-        functionalityIds: ["messenger", "manual"]
+        functionalityIds: ["messenger", "tasks", "manual"]
     },
     {
         deliverable: "No-show prevention",
-        functionalityIds: ["messenger", "flow", "aiAgents", "interop", "tabiaScore", "manual"]
+        functionalityIds: ["messenger", "tasks", "flow", "aiAgents", "interop", "tabiaScore", "automated", "manual"]
     },
     {
         deliverable: "No-show recovery",
-        functionalityIds: ["messenger", "flow", "survey", "aiAgents", "interop"]
+        functionalityIds: ["messenger", "flow", "survey", "aiAgents", "interop", "tabiaScore", "automated"]
     },
     {
         deliverable: "Patient recovery",
-        functionalityIds: ["messenger", "survey", "tabiaScore", "manual"]
+        functionalityIds: ["messenger", "tasks", "survey", "manual"]
     },
     {
         deliverable: "Care pathway orchestration",
-        functionalityIds: ["messenger", "pathway", "manual"]
+        functionalityIds: ["messenger", "tasks", "pathway", "manual", "medicalCodes", "insurance"],
     },
     {
         deliverable: "RPM",

@@ -1,10 +1,10 @@
-# D3.js Sunburst Chart
+# D3.js Roadmap Chart
 
-Este projeto apresenta uma visualização de gráfico sunburst (gráfico de explosão solar) implementado com D3.js.
+Este projeto apresenta uma visualização de gráfico roadmap implementado com D3.js.
 
 ## Sobre o Projeto
 
-O gráfico sunburst é uma visualização hierárquica que mostra relações entre categorias e subcategorias em uma estrutura de dados aninhada. É semelhante a um gráfico de pizza, mas com múltiplos níveis que permitem visualizar hierarquias de dados.
+O gráfico roadmap é uma visualização hierárquica que mostra relações entre categorias e subcategorias em uma estrutura de dados aninhada. É semelhante a um gráfico de pizza, mas com múltiplos níveis que permitem visualizar hierarquias de dados.
 
 ## Funcionalidades
 
@@ -17,7 +17,27 @@ O gráfico sunburst é uma visualização hierárquica que mostra relações ent
 
 1. Clone este repositório
 2. Abra o arquivo `index.html` em um navegador web moderno
-3. Interaja com o gráfico passando o mouse sobre os diferentes segmentos
+3. Interaja com os gráficos passando o mouse sobre os diferentes segmentos
+
+## Estrutura do Projeto
+
+O projeto foi organizado de forma modular para facilitar a manutenção e reutilização:
+
+- `index.html`: Contém a estrutura HTML básica e referências aos arquivos externos
+- `styles.css`: Contém todos os estilos CSS para os gráficos
+- `data.js`: Contém os conjuntos de dados para os gráficos
+- `roadmap.js`: Contém a função para criar gráficos roadmap
+
+## Como Adicionar Novos Gráficos
+
+Para adicionar um novo gráfico roadmap à página:
+
+1. Adicione um novo conjunto de dados em `data.js` ou use um existente
+2. Adicione um novo container no HTML: `<div id="meuNovoGrafico"></div>`
+3. Chame a função `createRoadmapChart` com os parâmetros apropriados:
+   ```javascript
+   createRoadmapChart(meuConjuntoDeDados, "meuNovoGrafico");
+   ```
 
 ## Estrutura de Dados
 
@@ -41,7 +61,7 @@ O gráfico usa uma estrutura de dados hierárquica no formato JSON:
 
 ## Personalização
 
-Para usar seus próprios dados, modifique a constante `data` no arquivo `index.html`. Cada nó deve ter:
+Para usar seus próprios dados, modifique ou adicione novos conjuntos de dados no arquivo `data.js`. Cada nó deve ter:
 
 - Um nome (`name`)
 - Um valor (`value`) para nós folha

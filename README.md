@@ -1,56 +1,56 @@
 # D3.js Roadmap Chart
 
-Este projeto apresenta uma visualização de gráfico roadmap implementado com D3.js.
+This project presents a roadmap chart visualization implemented with D3.js.
 
-## Sobre o Projeto
+## About the Project
 
-O gráfico roadmap é uma visualização hierárquica que mostra relações entre categorias e subcategorias em uma estrutura de dados aninhada. É semelhante a um gráfico de pizza, mas com múltiplos níveis que permitem visualizar hierarquias de dados.
+The roadmap chart is a hierarchical visualization that shows relationships between categories and subcategories in a nested data structure. It is similar to a pie chart, but with multiple levels that allow visualizing data hierarchies.
 
-## Funcionalidades
+## Features
 
-- Visualização interativa de dados hierárquicos
-- Tooltips ao passar o mouse sobre os segmentos
-- Cores distintas para diferentes categorias
-- Rótulos para segmentos suficientemente grandes
+- Interactive visualization of hierarchical data
+- Tooltips when hovering over segments
+- Distinct colors for different categories
+- Labels for sufficiently large segments
 
-## Como Usar
+## How to Use
 
-1. Clone este repositório
-2. Abra o arquivo `index.html` em um navegador web moderno
-3. Interaja com os gráficos passando o mouse sobre os diferentes segmentos
+1. Clone this repository
+2. Open the `index.html` file in a modern web browser
+3. Interact with the charts by hovering over the different segments
 
-## Estrutura do Projeto
+## Project Structure
 
-O projeto foi organizado de forma modular para facilitar a manutenção e reutilização:
+The project is organized in a modular way to facilitate maintenance and reuse:
 
-- `index.html`: Contém a estrutura HTML básica e referências aos arquivos externos
-- `styles.css`: Contém todos os estilos CSS para os gráficos
-- `data.js`: Contém os conjuntos de dados para os gráficos
-- `roadmap.js`: Contém a função para criar gráficos roadmap
+- `index.html`: Contains the basic HTML structure and references to external files
+- `styles.css`: Contains all CSS styles for the charts
+- `data.js`: Contains the data sets for the charts
+- `roadmap.js`: Contains the function to create roadmap charts
 
-## Como Adicionar Novos Gráficos
+## How to Add New Charts
 
-Para adicionar um novo gráfico roadmap à página:
+To add a new roadmap chart to the page:
 
-1. Adicione um novo conjunto de dados em `data.js` ou use um existente
-2. Adicione um novo container no HTML: `<div id="meuNovoGrafico"></div>`
-3. Chame a função `createRoadmapChart` com os parâmetros apropriados:
+1. Add a new data set in `data.js` or use an existing one
+2. Add a new container in the HTML: `<div id="myNewChart"></div>`
+3. Call the `createRoadmapChart` function with the appropriate parameters:
    ```javascript
-   createRoadmapChart(meuConjuntoDeDados, "meuNovoGrafico");
+   createRoadmapChart(myDataSet, "myNewChart");
    ```
 
-## Estrutura de Dados
+## Data Structure
 
-O gráfico usa uma estrutura de dados hierárquica no formato JSON:
+The chart uses a hierarchical data structure in JSON format:
 
 ```json
 {
-    "name": "Raiz",
+    "name": "Root",
     "children": [
         {
-            "name": "Categoria A",
+            "name": "Category A",
             "children": [
-                { "name": "Subcategoria A1", "value": 20 },
+                { "name": "Subcategory A1", "value": 20 },
                 "..."
             ]
         },
@@ -59,21 +59,21 @@ O gráfico usa uma estrutura de dados hierárquica no formato JSON:
 }
 ```
 
-## Personalização
+## Customization
 
-Para usar seus próprios dados, modifique ou adicione novos conjuntos de dados no arquivo `data.js`. Cada nó deve ter:
+To use your own data, modify or add new data sets in the `data.js` file. Each node must have:
 
-- Um nome (`name`)
-- Um valor (`value`) para nós folha
-- Ou uma matriz de filhos (`children`) para nós internos
+- A name (`name`)
+- A value (`value`) for leaf nodes
+- Or an array of children (`children`) for internal nodes
 
-## Tecnologias Utilizadas
+## Technologies Used
 
 - HTML5
 - CSS3
 - JavaScript
 - [D3.js](https://d3js.org/) v7
 
-## Licença
+## License
 
-Este projeto está disponível como código aberto sob os termos da [Licença MIT](https://opensource.org/licenses/MIT).
+This project is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).

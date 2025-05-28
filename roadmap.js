@@ -1,17 +1,17 @@
-// Função para criar um gráfico roadmap
+// Function to create a roadmap chart
 function createRoadmapChart(data, containerId) {
-    // Configurar dimensões
+    // Configure dimensions
     const width = 1260;
     const height = 1260;
     const radius = Math.min(width, height) / 2;
 
-    // Criar escala de cores
+    // Create color scale
     const color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, data.children.length + 1));
 
-    // Limpar o container se já existir conteúdo
+    // Clear the container if content already exists
     d3.select("#" + containerId).html("");
 
-    // Criar o container SVG
+    // Create the SVG container
     const svg = d3.select("#" + containerId)
         .append("svg")
         .attr("width", width)
@@ -19,39 +19,39 @@ function createRoadmapChart(data, containerId) {
         .append("g")
         .attr("transform", `translate(${width / 2},${height / 2})`);
 
-    // Criar o layout de partição
+    // Create the partition layout
     const partition = d3.partition()
         .size([Math.PI, radius]);
 
-    // Converter dados para hierarquia
+    // Convert data to hierarchy
     const root = d3.hierarchy(data)
         .sum(d => d.value || 0)
         .sort((a, b) => b.value - a.value);
 
-    // Calcular o layout de partição
+    // Calculate the partition layout
     partition(root);
 
-    // Criar gerador de arco
+    // Create arc generator
     const arc = d3.arc()
-        .startAngle(d => d.x0 - Math.PI/2)  // Rotacionar para começar à esquerda
-        .endAngle(d => d.x1 - Math.PI/2)    // Rotacionar para terminar à direita
+        .startAngle(d => d.x0 - Math.PI/2)  // Rotate to start from the left
+        .endAngle(d => d.x1 - Math.PI/2)    // Rotate to end at the right
         .innerRadius(d => d.y0)
         .outerRadius(d => d.y1);
 
-    // Criar tooltip
+    // Create tooltip
     const tooltip = d3.select("body")
         .append("div")
         .attr("class", "tooltip")
         .style("opacity", 0);
 
-    // Adicionar as fatias
+    // Add slices
     const slice = svg.selectAll("g")
         .data(root.descendants())
         .enter()
         .append("g")
         .attr("class", "slice");
 
-    // Adicionar os caminhos
+    // Add paths
     slice.append("path")
         .attr("d", arc)
         .style("fill", d => {
@@ -68,7 +68,7 @@ function createRoadmapChart(data, containerId) {
                 .duration(200)
                 .style("opacity", 0.9);
 
-            tooltip.html(`<strong>${d.data.name}</strong><br>Valor: ${d.value}`)
+            tooltip.html(`<strong>${d.data.name}</strong><br>Value: ${d.value}`)
                 .style("left", (event.pageX + 10) + "px")
                 .style("top", (event.pageY - 28) + "px");
         })
@@ -83,33 +83,33 @@ function createRoadmapChart(data, containerId) {
     // Add labels
     slice.append("text")
         .attr("transform", function(d) {
-            // Ajustar o cálculo de rotação para o layout de meio círculo
-            const x = (d.x0 + d.x1) / 2 - Math.PI/2;  // Ajustar para a rotação do arco
+            // Adjust rotation calculation for the half-circle layout
+            const x = (d.x0 + d.x1) / 2 - Math.PI/2;  // Adjust for arc rotation
             const y = (d.y0 + d.y1) / 2;
 
-            // Se for o elemento raiz (d.depth === 0), deixar o texto na horizontal
+            // If it's the root element (d.depth === 0), keep the text horizontal
             if (d.depth === 0) {
                 return `translate(${arc.centroid(d)}) rotate(0)`;
             }
 
-            // Para os demais elementos, manter a orientação radial atual
-            // Calcular o ângulo para orientação radial (perpendicular ao arco)
-            // 90 graus adicional faz o texto seguir a direção radial (do centro para fora)
+            // For other elements, maintain the current radial orientation
+            // Calculate the angle for radial orientation (perpendicular to the arc)
+            // Additional 90 degrees makes the text follow the radial direction (from center outward)
             let rotation = (x * 180 / Math.PI) + 90;
 
-            // Garantir que o texto seja sempre legível de dentro para fora
-            // Ajustar a rotação para que o texto nunca fique de cabeça para baixo
-            // quando visto do centro para fora
+            // Ensure that the text is always readable from inside out
+            // Adjust the rotation so that the text is never upside down
+            // when viewed from the center outward
             if (rotation > 90 && rotation < 270) {
-                rotation += 180;  // Girar 180 graus para textos que ficariam de cabeça para baixo
+                rotation += 180;  // Rotate 180 degrees for texts that would be upside down
             }
 
             return `translate(${arc.centroid(d)}) rotate(${rotation})`;
         })
-        .attr("text-anchor", "middle")  // Centralizar o texto no segmento
+        .attr("text-anchor", "middle")  // Center the text in the segment
         .attr("dy", "0.35em")
         .text(function(d) {
-            // Mostrar texto apenas se a fatia for grande o suficiente
+            // Show text only if the slice is large enough
             return (d.x1 - d.x0) > 0.08 ? d.data.name : ""; // Reduced threshold to show more labels
         })
         .style("fill", "white")

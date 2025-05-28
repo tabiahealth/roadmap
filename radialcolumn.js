@@ -1,15 +1,15 @@
-// Função para criar um gráfico de colunas radial
-function createRadialColumnChart(data, containerId, firstProp = "usClients", secondProp = "worldClients", firstLabel = "EUA", secondLabel = "Mundo") {
-    // Configurar dimensões
+// Function to create a radial column chart
+function createRadialColumnChart(data, containerId, firstProp = "usClients", secondProp = "worldClients", firstLabel = "USA", secondLabel = "World") {
+    // Configure dimensions
     const width = 1260;
     const height = 1260;
     const innerRadius = 180;
     const outerRadius = Math.min(width, height) / 2 - 60;
 
-    // Limpar o container se já existir conteúdo
+    // Clear the container if content already exists
     d3.select("#" + containerId).html("");
 
-    // Criar o container SVG
+    // Create the SVG container
     const svg = d3.select("#" + containerId)
         .append("svg")
         .attr("width", width)
@@ -17,27 +17,27 @@ function createRadialColumnChart(data, containerId, firstProp = "usClients", sec
         .append("g")
         .attr("transform", `translate(${width / 2},${height / 2})`);
 
-    // Extrair categorias e criar escala x
+    // Extract categories and create x scale
     const categories = data.map(d => d.category);
     const x = d3.scaleBand()
         .domain(categories)
         .range([0, Math.PI])
         .padding(0.1);
 
-    // Encontrar o valor máximo para a escala y (agora baseado no número de itens em cada array)
+    // Find the maximum value for the y scale (now based on the number of items in each array)
     const maxValue = d3.max(data, d => Math.max(d[firstProp].length, d[secondProp].length));
     const y = d3.scaleRadial()
         .domain([0, maxValue])
         .range([innerRadius, outerRadius]);
 
-    // Criar escala de cores
+    // Create color scale
     const color = d3.scaleOrdinal()
         .domain([firstProp, secondProp])
         .range(["#4e79a7", "#f28e2c"]);
 
-    // Os labels para as colunas foram removidos pois já existe uma legenda no gráfico
+    // The labels for the columns were removed because there is already a legend in the chart
 
-    // Adicionar labels para as categorias no círculo externo
+    // Add labels for categories in the outer circle
     svg.append("g")
         .selectAll("g")
         .data(categories)
@@ -45,16 +45,16 @@ function createRadialColumnChart(data, containerId, firstProp = "usClients", sec
         .append("g")
         .attr("text-anchor", "middle")
         .attr("transform", function(d) {
-            // Posicionar no centro da categoria
+            // Position at the center of the category
             const angle = x(d) + x.bandwidth() / 2 - Math.PI/2;
-            // Posicionar mais próximo do raio externo (reduzido de 20 para 5)
+            // Position closer to the outer radius (reduced from 20 to 5)
             return `rotate(${angle * 180 / Math.PI}) translate(0,${-outerRadius - 5})`;
         })
         .append("text")
         .text(d => d)
         .attr("transform", function(d) {
             const angle = x(d) + x.bandwidth() / 2 - Math.PI/2;
-            // Rotacionar o texto para que fique legível
+            // Rotate the text to make it readable
             let rotation = 0;
             if (angle > 0 && angle < Math.PI) {
                 rotation = 90 - angle * 180 / Math.PI;
@@ -67,10 +67,10 @@ function createRadialColumnChart(data, containerId, firstProp = "usClients", sec
         .style("font-weight", "bold")
         .style("fill", "#333");
 
-    // Adicionar eixo y (valores)
+    // Add y-axis (values)
     const yAxis = svg.append("g");
 
-    // Adicionar linhas de grade circulares
+    // Add circular grid lines
     const yTicks = y.ticks(5);
     yAxis.selectAll(".grid-circle")
         .data(yTicks)
@@ -82,7 +82,7 @@ function createRadialColumnChart(data, containerId, firstProp = "usClients", sec
         .attr("stroke", "#e0e0e0")
         .attr("stroke-dasharray", "4,4");
 
-    // Adicionar rótulos para os valores do eixo y
+    // Add labels for y-axis values
     yAxis.selectAll(".y-label")
         .data(yTicks)
         .enter()
@@ -94,15 +94,15 @@ function createRadialColumnChart(data, containerId, firstProp = "usClients", sec
         .text(d => d)
         .style("font-size", "10px");
 
-    // Criar tooltip
+    // Create tooltip
     const tooltip = d3.select("body")
         .append("div")
         .attr("class", "tooltip")
         .style("opacity", 0);
 
-    // Função para criar barras
+    // Function to create bars
     function createBars(data, key, offset, color, label) {
-        const barWidth = x.bandwidth() / 2 * 0.9; // Largura da barra (metade do espaço disponível)
+        const barWidth = x.bandwidth() / 2 * 0.9; // Bar width (half of the available space)
 
         svg.append("g")
             .selectAll("path")
@@ -116,7 +116,7 @@ function createRadialColumnChart(data, containerId, firstProp = "usClients", sec
 
                 const arc = d3.arc()
                     .innerRadius(innerRadius)
-                    .outerRadius(y(d[key].length)) // Usar o comprimento do array para determinar a altura da barra
+                    .outerRadius(y(d[key].length)) // Use the array length to determine the bar height
                     .startAngle(startAngle - Math.PI/2)
                     .endAngle(endAngle - Math.PI/2);
 
@@ -130,7 +130,7 @@ function createRadialColumnChart(data, containerId, firstProp = "usClients", sec
                     .duration(200)
                     .style("opacity", 0.9);
 
-                // Criar uma lista HTML com os nomes dos itens
+                // Create an HTML list with the item names
                 const itemList = d[key].map(item => `<li>${item}</li>`).join('');
 
                 tooltip.html(`<strong>${d.category}</strong><br>${label}:<ul style="margin: 5px 0; padding-left: 20px;">${itemList}</ul>`)
@@ -146,13 +146,13 @@ function createRadialColumnChart(data, containerId, firstProp = "usClients", sec
             });
     }
 
-    // Criar barras para a primeira propriedade
+    // Create bars for the first property
     createBars(data, firstProp, 0, color(firstProp), firstLabel);
 
-    // Criar barras para a segunda propriedade
+    // Create bars for the second property
     createBars(data, secondProp, x.bandwidth() / 2, color(secondProp), secondLabel);
 
-    // Adicionar legenda
+    // Add legend
     const legend = svg.append("g")
         .attr("transform", `translate(${-width/4}, ${-height/2 + 40})`);
 
@@ -161,11 +161,11 @@ function createRadialColumnChart(data, containerId, firstProp = "usClients", sec
         { key: secondProp, label: secondLabel }
     ];
 
-    // Adicionar texto explicativo abaixo da legenda
+    // Add explanatory text below the legend
     legend.append("text")
         .attr("x", 0)
         .attr("y", 60)
-        .text("* A altura das barras representa o número de itens")
+        .text("* The height of the bars represents the number of items")
         .style("font-size", "12px")
         .style("font-style", "italic");
 

@@ -1,14 +1,14 @@
-// Dados de exemplo para o gráfico roadmap
+// Example data for the roadmap chart
 const tabiaRoadmapData = {
     name: "Tabia",
     children: [
         {
             name: "Acquisition",
             children: [
-                { name: "Subcategoria A1", value: 20 },
-                { name: "Subcategoria A2", value: 30 },
+                { name: "Subcategory A1", value: 20 },
+                { name: "Subcategory A2", value: 30 },
                 { 
-                    name: "Subcategoria A3", 
+                    name: "Subcategory A3", 
                     children: [
                         { name: "Item A3-1", value: 10 },
                         { name: "Item A3-2", value: 15 }
@@ -26,22 +26,22 @@ const tabiaRoadmapData = {
         {
             name: "No-show prevention",
             children: [
-                { name: "Subcategoria C1", value: 40 },
-                { name: "Subcategoria C2", value: 20 }
+                { name: "Subcategory C1", value: 40 },
+                { name: "Subcategory C2", value: 20 }
             ]
         },
         {
             name: "No-show recovery",
             children: [
-                { name: "Subcategoria C1", value: 40 },
-                { name: "Subcategoria C2", value: 20 }
+                { name: "Subcategory C1", value: 40 },
+                { name: "Subcategory C2", value: 20 }
             ]
         },
         {
             name: "Patient recovery",
             children: [
-                { name: "Subcategoria C1", value: 40 },
-                { name: "Subcategoria C2", value: 20 }
+                { name: "Subcategory C1", value: 40 },
+                { name: "Subcategory C2", value: 20 }
             ]
         },
         {
@@ -54,8 +54,8 @@ const tabiaRoadmapData = {
         {
             name: "RPM",
             children: [
-                { name: "Subcategoria C1", value: 40 },
-                { name: "Subcategoria C2", value: 20 }
+                { name: "Subcategory C1", value: 40 },
+                { name: "Subcategory C2", value: 20 }
             ]
         },
         {
@@ -68,90 +68,90 @@ const tabiaRoadmapData = {
     ]
 };
 
-// Dados para o gráfico de colunas radial
+// Data for the radial column chart
 const tabiaClientData = [
     { 
         category: "Acquisition", 
         usClients: ["Mayo Clinic", "Cleveland Clinic", "Johns Hopkins"],
-        worldClients: ["Hospital Israelita Albert Einstein", "Hospital Sírio-Libanês", "Clínica Alemana"]
+        worldClients: ["Albert Einstein Israelite Hospital", "Sírio-Libanês Hospital", "German Clinic"]
     },
     { 
         category: "Scheduling", 
         usClients: ["Mount Sinai", "NYU Langone"],
-        worldClients: ["Hospital Universitário de Zurique", "Hospital Charité", "Hospital Karolinska"]
+        worldClients: ["University Hospital of Zurich", "Charité Hospital", "Karolinska Hospital"]
     },
     { 
         category: "No-show prevention", 
         usClients: ["Stanford Health", "UCSF Medical Center", "UCLA Health"],
-        worldClients: ["Hospital Pitié-Salpêtrière", "Hospital São Lucas"]
+        worldClients: ["Pitié-Salpêtrière Hospital", "São Lucas Hospital"]
     },
     { 
         category: "No-show recovery", 
         usClients: ["Massachusetts General", "Brigham and Women's"],
-        worldClients: ["Hospital Universitário de Genebra", "Hospital Universitário de Oslo", "Hospital Universitário de Copenhague"]
+        worldClients: ["University Hospital of Geneva", "University Hospital of Oslo", "University Hospital of Copenhagen"]
     },
     { 
         category: "Patient recovery", 
         usClients: ["Duke University Hospital", "Vanderbilt University Medical Center", "Northwestern Memorial"],
-        worldClients: ["Hospital Universitário La Paz", "Hospital Universitário de Heidelberg"]
+        worldClients: ["La Paz University Hospital", "University Hospital of Heidelberg"]
     },
     { 
         category: "Care pathway orchestration", 
         usClients: ["Cedars-Sinai", "Houston Methodist"],
-        worldClients: ["Hospital Universitário de Viena", "Hospital Universitário de Estocolmo", "Hospital Universitário de Amsterdã"]
+        worldClients: ["University Hospital of Vienna", "University Hospital of Stockholm", "University Hospital of Amsterdam"]
     },
     { 
         category: "RPM", 
         usClients: ["NewYork-Presbyterian", "Rush University Medical Center", "Barnes-Jewish Hospital"],
-        worldClients: ["Hospital Universitário de Barcelona", "Hospital Universitário de Milão"]
+        worldClients: ["University Hospital of Barcelona", "University Hospital of Milan"]
     },
     { 
         category: "Platform / Enablers", 
         usClients: ["University of Michigan Hospital", "UPMC"],
-        worldClients: ["Hospital Universitário de Toronto", "Hospital Universitário de Sydney", "Hospital Universitário de Singapura"]
+        worldClients: ["University Hospital of Toronto", "University Hospital of Sydney", "University Hospital of Singapore"]
     }
 ];
 
-// Dados para o gráfico de soluções automatizadas e semi-automatizadas
+// Data for the automated and semi-automated solutions chart
 const tabiaSolutionsData = [
     { 
         category: "Acquisition", 
-        automated: ["Agendamento Online", "Chatbot de Triagem", "Portal do Paciente"],
-        semiAutomated: ["Assistente Virtual", "Formulários Inteligentes"]
+        automated: ["Online Scheduling", "Triage Chatbot", "Patient Portal"],
+        semiAutomated: ["Virtual Assistant", "Smart Forms"]
     },
     { 
         category: "Scheduling", 
-        automated: ["Algoritmo de Otimização", "Sistema de Lembretes"],
-        semiAutomated: ["Assistente de Agendamento", "Recomendador de Horários", "Gestor de Filas"]
+        automated: ["Optimization Algorithm", "Reminder System"],
+        semiAutomated: ["Scheduling Assistant", "Schedule Recommender", "Queue Manager"]
     },
     { 
         category: "No-show prevention", 
-        automated: ["Sistema de Lembretes SMS", "Confirmação Automática"],
-        semiAutomated: ["Análise Preditiva", "Gestor de Engajamento"]
+        automated: ["SMS Reminder System", "Automatic Confirmation"],
+        semiAutomated: ["Predictive Analysis", "Engagement Manager"]
     },
     { 
         category: "No-show recovery", 
-        automated: ["Preenchimento Automático de Vagas", "Notificação de Disponibilidade"],
-        semiAutomated: ["Assistente de Reagendamento", "Priorizador de Pacientes"]
+        automated: ["Automatic Slot Filling", "Availability Notification"],
+        semiAutomated: ["Rescheduling Assistant", "Patient Prioritizer"]
     },
     { 
         category: "Patient recovery", 
-        automated: ["Monitoramento Remoto", "Lembretes de Medicação"],
-        semiAutomated: ["Assistente de Recuperação", "Análise de Progresso", "Plano de Cuidados Personalizado"]
+        automated: ["Remote Monitoring", "Medication Reminders"],
+        semiAutomated: ["Recovery Assistant", "Progress Analysis", "Personalized Care Plan"]
     },
     { 
         category: "Care pathway orchestration", 
-        automated: ["Fluxo de Trabalho Automatizado", "Integração de Sistemas"],
-        semiAutomated: ["Assistente de Cuidados", "Gestor de Protocolos", "Coordenador de Equipe"]
+        automated: ["Automated Workflow", "System Integration"],
+        semiAutomated: ["Care Assistant", "Protocol Manager", "Team Coordinator"]
     },
     { 
         category: "RPM", 
-        automated: ["Coleta Automática de Dados", "Alertas de Anomalias", "Dashboard em Tempo Real"],
-        semiAutomated: ["Análise de Tendências", "Recomendador de Intervenções"]
+        automated: ["Automatic Data Collection", "Anomaly Alerts", "Real-time Dashboard"],
+        semiAutomated: ["Trend Analysis", "Intervention Recommender"]
     },
     { 
         category: "Platform / Enablers", 
-        automated: ["APIs de Integração", "Processamento de Dados em Lote", "Autenticação Segura"],
-        semiAutomated: ["Ferramentas de Análise", "Configurador de Fluxos", "Gestor de Permissões"]
+        automated: ["Integration APIs", "Batch Data Processing", "Secure Authentication"],
+        semiAutomated: ["Analysis Tools", "Flow Configurator", "Permissions Manager"]
     }
 ];

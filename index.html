@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gráficos Roadmap com D3.js</title>
+    <title>Roadmap Charts with D3.js</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -11,29 +11,29 @@
     <h1>Tabia Roadmap for 2025</h1>
     <div id="chart1"></div>
 
-    <h1>Distribuição de Clientes por Categoria</h1>
+    <h1>Client Distribution by Category</h1>
     <div id="chart3"></div>
 
-    <h1>Soluções Automatizadas e Semi-automatizadas por Categoria</h1>
+    <h1>Automated and Semi-automated Solutions by Category</h1>
     <div id="chart4"></div>
 
-    <!-- Carregar os dados -->
+    <!-- Load data -->
     <script src="data.js"></script>
 
-    <!-- Carregar as funções dos gráficos -->
+    <!-- Load chart functions -->
     <script src="roadmap.js"></script>
     <script src="radialcolumn.js"></script>
 
-    <!-- Inicializar os gráficos -->
+    <!-- Initialize charts -->
     <script>
-        // Criar o gráfico roadmap com os dados do roadmap da Tabia
+        // Create roadmap chart with Tabia roadmap data
         createRoadmapChart(tabiaRoadmapData, "chart1");
 
-        // Criar o gráfico de colunas radial com os dados de clientes
+        // Create radial column chart with client data
         createRadialColumnChart(tabiaClientData, "chart3");
 
-        // Criar o gráfico de colunas radial com os dados de soluções automatizadas e semi-automatizadas
-        createRadialColumnChart(tabiaSolutionsData, "chart4", "automated", "semiAutomated", "Automatizadas", "Semi-automatizadas");
+        // Create radial column chart with automated and semi-automated solutions data
+        createRadialColumnChart(tabiaSolutionsData, "chart4", "automated", "semiAutomated", "Automated", "Semi-automated");
     </script>
 </body>
 </html>

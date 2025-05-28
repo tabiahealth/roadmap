@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráfico Sunburst com D3.js</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #333;
+        }
+        #chart {
+            width: 800px;
+            height: 800px;
+            margin-top: 20px;
+        }
+        .slice {
+            cursor: pointer;
+        }
+        .slice text {
+            font-size: 12px;
+            text-anchor: middle;
+        }
+        .tooltip {
+            position: absolute;
+            padding: 8px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            border-radius: 4px;
+            pointer-events: none;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gráfico Sunburst com D3.js</h1>
+    <div id="chart"></div>
+
+    <script>
+        // Dados de exemplo para o gráfico sunburst
+        const data = {
+            name: "Tabia",
+            children: [
+                {
+                    name: "Acquisition",
+                    children: [
+                        { name: "Subcategoria A1", value: 20 },
+                        { name: "Subcategoria A2", value: 30 },
+                        { 
+                            name: "Subcategoria A3", 
+                            children: [
+                                { name: "Item A3-1", value: 10 },
+                                { name: "Item A3-2", value: 15 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name: "Scheduling",
+                    children: [
+                        { name: "Subcategoria B1", value: 25 },
+                        { name: "Subcategoria B2", value: 15 },
+                        { name: "Subcategoria B3", value: 35 }
+                    ]
+                },
+                {
+                    name: "No-show prevention",
+                    children: [
+                        { name: "Subcategoria C1", value: 40 },
+                        { name: "Subcategoria C2", value: 20 }
+                    ]
+                },
+                {
+                    name: "No-show recovery",
+                    children: [
+                        { name: "Subcategoria C1", value: 40 },
+                        { name: "Subcategoria C2", value: 20 }
+                    ]
+                },
+                {
+                    name: "Patient recovery",
+                    children: [
+                        { name: "Subcategoria C1", value: 40 },
+                        { name: "Subcategoria C2", value: 20 }
+                    ]
+                },
+                {
+                    name: "Care pathway orchestration",
+                    children: [
+                        { name: "Subcategoria C1", value: 40 },
+                        { name: "Subcategoria C2", value: 20 }
+                    ]
+                },
+                {
+                    name: "RPM",
+                    children: [
+                        { name: "Subcategoria C1", value: 40 },
+                        { name: "Subcategoria C2", value: 20 }
+                    ]
+                },
+                {
+                    name: "Platform / Enablers",
+                    children: [
+                        { name: "Integrations", value: 40 },
+                        { name: "Optimizations", value: 20 }
+                    ]
+                }
+            ]
+        };
+
+        // Configurar dimensões
+        const width = 1260;
+        const height = 1260;
+        const radius = Math.min(width, height) / 2;
+
+        // Criar escala de cores
+        const color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, data.children.length + 1));
+
+        // Criar o container SVG
+        const svg = d3.select("#chart")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .append("g")
+            .attr("transform", `translate(${width / 2},${height / 2})`);
+
+        // Criar o layout de partição
+        const partition = d3.partition()
+            .size([Math.PI, radius]);
+
+        // Converter dados para hierarquia
+        const root = d3.hierarchy(data)
+            .sum(d => d.value || 0)
+            .sort((a, b) => b.value - a.value);
+
+        // Calcular o layout de partição
+        partition(root);
+
+        // Criar gerador de arco
+        const arc = d3.arc()
+            .startAngle(d => d.x0 - Math.PI/2)  // Rotacionar para começar à esquerda
+            .endAngle(d => d.x1 - Math.PI/2)    // Rotacionar para terminar à direita
+            .innerRadius(d => d.y0)
+            .outerRadius(d => d.y1);
+
+        // Criar tooltip
+        const tooltip = d3.select("body")
+            .append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+
+        // Adicionar as fatias
+        const slice = svg.selectAll("g")
+            .data(root.descendants())
+            .enter()
+            .append("g")
+            .attr("class", "slice");
+
+        // Adicionar os caminhos
+        slice.append("path")
+            .attr("d", arc)
+            .style("fill", d => {
+                while (d.depth > 1) d = d.parent;
+                return color(d.data.name);
+            })
+            .style("stroke", "white")
+            .style("stroke-width", "1px")
+            .style("opacity", 0.8)
+            .on("mouseover", function(event, d) {
+                d3.select(this).style("opacity", 1);
+
+                tooltip.transition()
+                    .duration(200)
+                    .style("opacity", 0.9);
+
+                tooltip.html(`${d.data.name}: ${d.value}`)
+                    .style("left", (event.pageX + 10) + "px")
+                    .style("top", (event.pageY - 28) + "px");
+            })
+            .on("mouseout", function() {
+                d3.select(this).style("opacity", 0.8);
+
+                tooltip.transition()
+                    .duration(500)
+                    .style("opacity", 0);
+            });
+
+        // Add labels
+        slice.append("text")
+            .attr("transform", function(d) {
+                // Ajustar o cálculo de rotação para o layout de meio círculo
+                const x = (d.x0 + d.x1) / 2 - Math.PI/2;  // Ajustar para a rotação do arco
+                const y = (d.y0 + d.y1) / 2;
+                // No meio círculo superior, todos os rótulos devem ser legíveis da esquerda para a direita
+                const rotation = x * 180 / Math.PI;
+                return `translate(${arc.centroid(d)}) rotate(${rotation})`;
+            })
+            .attr("text-anchor", "middle")  // Centralizar o texto no segmento
+            .attr("dy", "0.35em")
+            .text(function(d) {
+                // Mostrar texto apenas se a fatia for grande o suficiente
+                return (d.x1 - d.x0) > 0.1 ? d.data.name : "";
+            })
+            .style("fill", "white")
+            .style("font-size", "12px")
+            .style("pointer-events", "none");
+    </script>
+</body>
+</html>

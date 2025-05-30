@@ -298,14 +298,6 @@ const tabiaFunctionalities = {
     tabiaScore: {
         id: "tabiaScore",
         name: "Tabia Score"
-    },
-    automated: {
-        id: "automated",
-        name: "Fully automated"
-    },
-    manual: {
-        id: "manual",
-        name: "Manual mode support"
     }
 };
 
@@ -313,31 +305,64 @@ const tabiaFunctionalities = {
 const tabiaFunctionalitiesData = [
     {
         deliverable: "Acquisition",
-        functionalityIds: ["messenger", "flow", "tasks", "survey", "manual"]
+        functionalities: [
+            { id: "messenger", checkmarkType: "gray" },
+            { id: "flow", checkmarkType: "gray" },
+            { id: "tasks", checkmarkType: "gray" },
+            { id: "survey", checkmarkType: "gray" },
+        ]
     },
     {
         deliverable: "Scheduling",
-        functionalityIds: ["messenger", "tasks", "manual"]
+        functionalities: [
+            { id: "messenger", checkmarkType: "gray" },
+            { id: "tasks", checkmarkType: "gray" },
+        ]
     },
     {
         deliverable: "No-show prevention",
-        functionalityIds: ["messenger", "tasks", "flow", "aiAgents", "interop", "tabiaScore", "automated", "manual"]
+        functionalities: [
+            { id: "messenger", checkmarkType: "both" },
+            { id: "tasks", checkmarkType: "both" },
+            { id: "flow", checkmarkType: "both" },
+            { id: "aiAgents", checkmarkType: "both" },
+            { id: "interop", checkmarkType: "blue" },
+            { id: "tabiaScore", checkmarkType: "both" },
+        ]
     },
     {
         deliverable: "No-show recovery",
-        functionalityIds: ["messenger", "flow", "survey", "aiAgents", "interop", "tabiaScore", "automated"]
+        functionalities: [
+            { id: "messenger", checkmarkType: "both" },
+            { id: "flow", checkmarkType: "both" },
+            { id: "survey", checkmarkType: "both" },
+            { id: "aiAgents", checkmarkType: "both" },
+            { id: "interop", checkmarkType: "blue" },
+            { id: "tabiaScore", checkmarkType: "both" },
+        ]
     },
     {
         deliverable: "Patient recovery",
-        functionalityIds: ["messenger", "tasks", "survey", "manual"]
+        functionalities: [
+            { id: "messenger", checkmarkType: "gray" },
+            { id: "tasks", checkmarkType: "gray" },
+            { id: "survey", checkmarkType: "gray" },
+        ]
     },
     {
         deliverable: "Care pathway orchestration",
-        functionalityIds: ["messenger", "tasks", "pathway", "manual", "medicalCodes", "insurance"],
+        functionalities: [
+            { id: "messenger", checkmarkType: "gray" },
+            { id: "tasks", checkmarkType: "gray" },
+            { id: "pathway", checkmarkType: "gray" },
+            { id: "manual", checkmarkType: "gray" },
+            { id: "medicalCodes", checkmarkType: "gray" },
+            { id: "insurance", checkmarkType: "gray" }
+        ]
     },
     {
         deliverable: "RPM",
-        functionalityIds: []
+        functionalities: []
     }
 ];
 

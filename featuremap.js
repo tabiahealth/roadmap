@@ -49,13 +49,30 @@ function generateFunctionalitiesTable() {
             // Find the deliverable object
             const deliverableObj = tabiaFunctionalitiesData.find(item => item.deliverable === deliverable);
 
-            // Check if this functionality exists in this deliverable
-            const exists = deliverableObj.functionalityIds.includes(functionality.id);
+            // Find the functionality configuration for this deliverable
+            const functionalityConfig = deliverableObj.functionalities.find(f => f.id === functionality.id);
 
-            // Add a checkmark if the functionality exists in this deliverable
-            if (exists) {
-                cell.innerHTML = '✓';
-                cell.classList.add('checkmark');
+            // Check if this functionality exists in this deliverable
+            if (functionalityConfig) {
+                const container = document.createElement('div');
+                container.classList.add('checkmark-container');
+
+                // Add checkmarks based on the configuration
+                if (functionalityConfig.checkmarkType === "gray" || functionalityConfig.checkmarkType === "both") {
+                    const grayCheckmark = document.createElement('span');
+                    grayCheckmark.innerHTML = '✓';
+                    grayCheckmark.classList.add('checkmark-gray');
+                    container.appendChild(grayCheckmark);
+                }
+
+                if (functionalityConfig.checkmarkType === "blue" || functionalityConfig.checkmarkType === "both") {
+                    const blueCheckmark = document.createElement('span');
+                    blueCheckmark.innerHTML = '✓';
+                    blueCheckmark.classList.add('checkmark-blue');
+                    container.appendChild(blueCheckmark);
+                }
+
+                cell.appendChild(container);
             }
 
             row.appendChild(cell);
@@ -82,13 +99,30 @@ function generateFunctionalitiesTable() {
                     // Find the deliverable object
                     const deliverableObj = tabiaFunctionalitiesData.find(item => item.deliverable === deliverable);
 
-                    // Check if the parent functionality exists in this deliverable
-                    const exists = deliverableObj.functionalityIds.includes(functionality.id);
+                    // Find the functionality configuration for this deliverable
+                    const functionalityConfig = deliverableObj.functionalities.find(f => f.id === functionality.id);
 
-                    // Add a checkmark if the parent functionality exists in this deliverable
-                    if (exists) {
-                        cell.innerHTML = '✓';
-                        cell.classList.add('checkmark');
+                    // Check if the parent functionality exists in this deliverable
+                    if (functionalityConfig) {
+                        const container = document.createElement('div');
+                        container.classList.add('checkmark-container');
+
+                        // Add checkmarks based on the configuration
+                        if (functionalityConfig.checkmarkType === "gray" || functionalityConfig.checkmarkType === "both") {
+                            const grayCheckmark = document.createElement('span');
+                            grayCheckmark.innerHTML = '✓';
+                            grayCheckmark.classList.add('checkmark-gray');
+                            container.appendChild(grayCheckmark);
+                        }
+
+                        if (functionalityConfig.checkmarkType === "blue" || functionalityConfig.checkmarkType === "both") {
+                            const blueCheckmark = document.createElement('span');
+                            blueCheckmark.innerHTML = '✓';
+                            blueCheckmark.classList.add('checkmark-blue');
+                            container.appendChild(blueCheckmark);
+                        }
+
+                        cell.appendChild(container);
                     }
 
                     subRow.appendChild(cell);

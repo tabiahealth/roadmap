@@ -47,10 +47,22 @@ body {
     background-color: #f1f1f1;
 }
 
-.deliverables-table .checkmark {
-    color: #4e79a7;
+.deliverables-table .checkmark-gray {
+    color: #808080;
     font-weight: bold;
     font-size: 18px;
+}
+
+.deliverables-table .checkmark-blue {
+    color: #87CEFA;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.deliverables-table .checkmark-container {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
 }
 
 .deliverables-table .sub-item {

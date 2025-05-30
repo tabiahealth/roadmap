@@ -30,10 +30,13 @@ function createRadialColumnChart(data, containerId, firstProp, secondProp, first
         .domain([0, maxValue])
         .range([innerRadius, outerRadius]);
 
-    // Create color scale
+    // Get colors from the tabiaChartColors object in data.js
+    const firstColor = tabiaChartColors[containerId][firstProp];
+    const secondColor = tabiaChartColors[containerId][secondProp];
+
     const color = d3.scaleOrdinal()
         .domain([firstProp, secondProp])
-        .range(["#4e79a7", "#f28e2c"]);
+        .range([firstColor, secondColor]);
 
     // The labels for the columns were removed because there is already a legend in the chart
 

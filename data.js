@@ -270,6 +270,10 @@ const tabiaFunctionalities = {
         id: "aiAgents",
         name: "AI Agents"
     },
+    staticDatasets: {
+        id: "staticDatasets",
+        name: "Static datasets"
+    },
     pathway: {
         id: "pathway",
         name: "Pathway engine",
@@ -308,6 +312,7 @@ const tabiaFunctionalitiesData = [
         functionalities: [
             { id: "messenger", checkmarkType: "gray" },
             { id: "flow", checkmarkType: "gray" },
+            { id: "staticDatasets", checkmarkType: "gray" },
             { id: "tasks", checkmarkType: "gray" },
             { id: "survey", checkmarkType: "gray" },
         ]
@@ -317,6 +322,7 @@ const tabiaFunctionalitiesData = [
         functionalities: [
             { id: "messenger", checkmarkType: "gray" },
             { id: "tasks", checkmarkType: "gray" },
+            { id: "staticDatasets", checkmarkType: "gray" },
         ]
     },
     {
@@ -325,7 +331,8 @@ const tabiaFunctionalitiesData = [
             { id: "messenger", checkmarkType: "both" },
             { id: "tasks", checkmarkType: "gray" },
             { id: "flow", checkmarkType: "both" },
-            { id: "aiAgents", checkmarkType: "both" },
+            { id: "aiAgents", checkmarkType: "blue" },
+            { id: "staticDatasets", checkmarkType: "gray" },
             { id: "interop", checkmarkType: "blue" },
             { id: "tabiaScore", checkmarkType: "both" },
         ]
@@ -333,12 +340,12 @@ const tabiaFunctionalitiesData = [
     {
         deliverable: "No-show recovery",
         functionalities: [
-            { id: "messenger", checkmarkType: "both" },
-            { id: "flow", checkmarkType: "both" },
-            { id: "survey", checkmarkType: "both" },
-            { id: "aiAgents", checkmarkType: "both" },
+            { id: "messenger", checkmarkType: "blue" },
+            { id: "flow", checkmarkType: "blue" },
+            { id: "survey", checkmarkType: "blue" },
+            { id: "aiAgents", checkmarkType: "blue" },
             { id: "interop", checkmarkType: "blue" },
-            { id: "tabiaScore", checkmarkType: "both" },
+            { id: "tabiaScore", checkmarkType: "blue" },
         ]
     },
     {
@@ -365,6 +372,20 @@ const tabiaFunctionalitiesData = [
         functionalities: []
     }
 ];
+
+// Define chart colors
+const tabiaChartColors = {
+    // Colors for chart3 (geographic distribution)
+    "chart3": {
+        "usClients": "#4e79a7",     // Darker blue
+        "worldClients": "#f28e2c"   // Orange
+    },
+    // Colors for chart4 (maturity level)
+    "chart4": {
+        "automated": "#87CEFA",     // Light blue
+        "semiAutomated": "#808080"  // Gray
+    }
+};
 
 // Data for the radial column charts
 const tabiaClientData = getClientData();

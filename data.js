@@ -373,20 +373,6 @@ const tabiaFunctionalitiesData = [
     }
 ];
 
-// Define chart colors
-const tabiaChartColors = {
-    // Colors for chart3 (geographic distribution)
-    "chart3": {
-        "usClients": "#4e79a7",     // Darker blue
-        "worldClients": "#f28e2c"   // Orange
-    },
-    // Colors for chart4 (maturity level)
-    "chart4": {
-        "automated": "#87CEFA",     // Light blue
-        "semiAutomated": "#808080"  // Gray
-    }
-};
-
 // Data for the radial column charts
 const tabiaClientData = getClientData();
 const tabiaSolutionsData = getSolutionsData();

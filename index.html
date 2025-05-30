@@ -36,6 +36,23 @@
     <h1>Tabia Roadmap for 2025</h1>
     <div id="chart1"></div>
 
+    <!-- Define chart colors -->
+    <script>
+        // Define chart colors
+        const tabiaChartColors = {
+            // Colors for geographic distribution chart
+            "chart3": {
+                "usClients": "#f1a",
+                "worldClients": "#808080"
+            },
+            // Colors for maturity level chart
+            "chart4": {
+                "automated": "#87CEFA",
+                "semiAutomated": "#808080"
+            }
+        };
+    </script>
+
     <!-- Load data -->
     <script src="data.js"></script>
 
@@ -54,10 +71,12 @@
         createRoadmapChart(tabiaRoadmapData, "chart1");
 
         // Create radial column chart with client data
-        createRadialColumnChart(tabiaClientData, "chart3", "usClients", "worldClients", "USA", "Rest of the world");
+        createRadialColumnChart(tabiaClientData, "chart3", "usClients", "worldClients", "USA", "Rest of the world", 
+                               tabiaChartColors["chart3"]["usClients"], tabiaChartColors["chart3"]["worldClients"]);
 
         // Create radial column chart with automated and semi-automated solutions data
-        createRadialColumnChart(tabiaSolutionsData, "chart4", "automated", "semiAutomated", "Automated", "Semi-automated");
+        createRadialColumnChart(tabiaSolutionsData, "chart4", "automated", "semiAutomated", "Automated", "Semi-automated",
+                               tabiaChartColors["chart4"]["automated"], tabiaChartColors["chart4"]["semiAutomated"]);
     </script>
 </body>
 </html>

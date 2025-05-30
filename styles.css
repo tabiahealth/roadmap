@@ -47,13 +47,13 @@ body {
     background-color: #f1f1f1;
 }
 
-.deliverables-table .checkmark-gray {
+.checkmark-gray {
     color: #808080;
     font-weight: bold;
     font-size: 18px;
 }
 
-.deliverables-table .checkmark-blue {
+.checkmark-blue {
     color: #87CEFA;
     font-weight: bold;
     font-size: 18px;
@@ -113,4 +113,41 @@ h1 {
 }
 #featuremap {
     padding-bottom: 400px;
+}
+
+/* Legend styles */
+.checkmark-legend {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    width: 100%;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.checkmark-legend h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.legend-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.legend-item span:not(.checkmark-gray):not(.checkmark-blue) {
+    font-size: 14px;
+    color: #333;
 }

@@ -323,7 +323,7 @@ const tabiaFunctionalitiesData = [
         deliverable: "No-show prevention",
         functionalities: [
             { id: "messenger", checkmarkType: "both" },
-            { id: "tasks", checkmarkType: "both" },
+            { id: "tasks", checkmarkType: "gray" },
             { id: "flow", checkmarkType: "both" },
             { id: "aiAgents", checkmarkType: "both" },
             { id: "interop", checkmarkType: "blue" },

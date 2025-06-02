@@ -131,14 +131,20 @@ const tabiaRoadmapData = {
         {
             name: "Scheduling",
             children: [
-                { name: "AI Agents", value: 50 },
+                { name: "AI Agents", value: 10 },
                 { name: "Interoperability", value: 15 },
             ]
         },
         {
             name: "No-show prevention",
             children: [
-                { name: "Productize", value: 30 },
+                { name: "Milestone management", value: 7 },
+                { name: "Experience management", value: 7 },
+                { name: "SDOH", value: 7 },
+                { name: "Smart scheduling", value: 7 },
+                { name: "Smart waitlist", value: 7 },
+                { name: "Appointment confirmation", value: 7 },
+                { name: "RAF", value: 7 },
             ]
         },
         {
@@ -150,22 +156,29 @@ const tabiaRoadmapData = {
         {
             name: "Patient recovery",
             children: [
-                { name: "AI Agents", value: 20 },
+                { name: "Human phone calls", value: 7 },
+                { name: "AI Voice", value: 7 },
+                { name: "Email", value: 7 },
             ]
         },
         {
             name: "Care pathway orchestration",
             children: [
-                { name: "Pathway model", value: 30 },
-                { name: "Interoperability", value: 20 },
-                { name: "Support clinical data", value: 10 }
+                { name: "Care gap closure", value: 6 },
+                { name: "Care execution", value: 6 },
+                { name: "Care coordination", value: 6 },
+                { name: "Treatment adherence", value: 6 },
+                { name: "Protocol compliance", value: 6 },
+                { name: "Medication adherence", value: 6 },
+                { name: "Patient education", value: 6 },
+                { name: "Clinical management", value: 6 },
             ]
         },
         {
             name: "Platform / Enablers",
             children: [
-                { name: "Improve interoperability", value: 30 },
-                { name: "Accelerate delivery", value: 20 },
+                { name: "Improve interoperability", value: 10 },
+                { name: "Accelerate delivery", value: 10 },
                 { name: "Optimize performance", value: 10 },
             ]
         },

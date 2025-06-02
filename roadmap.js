@@ -55,25 +55,38 @@ function createRoadmapChart(data, containerId) {
     slice.append("path")
         .attr("d", arc)
         .style("fill", d => {
-            while (d.depth > 1) d = d.parent;
-            return color(d.data.name);
+            // Get the original color based on parent category
+            let originalColor;
+            let tempD = d;
+            while (tempD.depth > 1) tempD = tempD.parent;
+            originalColor = color(tempD.data.name);
+
+            // If planned, mix the original color with gray
+            if (d.data.planned) {
+                // Use d3.interpolateRgb to blend the original color with gray
+                return d3.interpolateRgb(originalColor, "#808080")(0.7); // 70% gray, 30% original color
+            } else {
+                return originalColor;
+            }
         })
         .style("stroke", "white")
         .style("stroke-width", "1px")
-        .style("opacity", 0.8)
+        .style("opacity", d => d.data.planned ? 0.4 : 0.8) // Lower opacity for planned items
         .on("mouseover", function(event, d) {
-            d3.select(this).style("opacity", 1);
+            d3.select(this).style("opacity", d.data.planned ? 0.7 : 1); // Still show difference on hover
 
             tooltip.transition()
                 .duration(200)
                 .style("opacity", 0.9);
 
-            tooltip.html(`<strong>${d.data.name}</strong><br>Value: ${d.value}`)
+            // Add indication if item is planned
+            const plannedText = d.data.planned ? "<br><em>(Planned)</em>" : "";
+            tooltip.html(`<strong>${d.data.name}</strong>${plannedText}<br>Value: ${d.value}`)
                 .style("left", (event.pageX + 10) + "px")
                 .style("top", (event.pageY - 28) + "px");
         })
-        .on("mouseout", function() {
-            d3.select(this).style("opacity", 0.8);
+        .on("mouseout", function(event, d) {
+            d3.select(this).style("opacity", d.data.planned ? 0.4 : 0.8);
 
             tooltip.transition()
                 .duration(500)

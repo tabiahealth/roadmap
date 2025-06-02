@@ -131,20 +131,20 @@ const tabiaRoadmapData = {
         {
             name: "Scheduling",
             children: [
-                { name: "AI Agents", value: 10 },
-                { name: "Interoperability", value: 15 },
+                { name: "AI Agents", value: 10,  planned: true },
+                { name: "Interoperability", value: 15,  planned: true },
             ]
         },
         {
             name: "No-show prevention",
             children: [
-                { name: "Milestone management", value: 7 },
+                { name: "Milestone management", value: 7, planned: true },
                 { name: "Experience management", value: 7 },
-                { name: "SDOH", value: 7 },
-                { name: "Smart scheduling", value: 7 },
-                { name: "Smart waitlist", value: 7 },
+                { name: "SDOH", value: 7, planned: true },
+                { name: "Smart scheduling", value: 7, planned: true },
+                { name: "Smart waitlist", value: 7, planned: true },
                 { name: "Appointment confirmation", value: 7 },
-                { name: "RAF", value: 7 },
+                { name: "RAF", value: 7, planned: true },
             ]
         },
         {
@@ -157,29 +157,29 @@ const tabiaRoadmapData = {
             name: "Patient recovery",
             children: [
                 { name: "Human phone calls", value: 7 },
-                { name: "AI Voice", value: 7 },
-                { name: "Email", value: 7 },
+                { name: "AI Voice", value: 7, planned: true },
+                { name: "Email", value: 7, planned: true },
             ]
         },
         {
             name: "Care pathway orchestration",
             children: [
                 { name: "Care gap closure", value: 6 },
-                { name: "Care execution", value: 6 },
-                { name: "Care coordination", value: 6 },
+                { name: "Care execution", value: 6, planned: true },
+                { name: "Care coordination", value: 6, planned: true },
                 { name: "Treatment adherence", value: 6 },
-                { name: "Protocol compliance", value: 6 },
-                { name: "Medication adherence", value: 6 },
+                { name: "Protocol compliance", value: 6, planned: true },
+                { name: "Medication adherence", value: 6, planned: true },
                 { name: "Patient education", value: 6 },
-                { name: "Clinical management", value: 6 },
+                { name: "Clinical management", value: 6, planned: true },
             ]
         },
         {
             name: "Platform / Enablers",
             children: [
-                { name: "Improve interoperability", value: 10 },
-                { name: "Accelerate delivery", value: 10 },
-                { name: "Optimize performance", value: 10 },
+                { name: "Improve interoperability", value: 10, planned: true },
+                { name: "Accelerate delivery", value: 10, planned: true },
+                { name: "Optimize performance", value: 10, planned: true },
             ]
         },
         // {
